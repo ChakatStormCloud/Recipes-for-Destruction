@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "lawofconservation",
+    "name": "Law of Conservation",
+    "description": "Matter is not destroyed when things explode",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": ["StormCloud"],
+    "credits": "StormCloud for making this, and many others for giving me advice and helping me figure things out.",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
