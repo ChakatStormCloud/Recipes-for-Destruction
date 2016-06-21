@@ -1,10 +1,10 @@
 [
   {
-    "modid": "lawofconservation",
-    "name": "Law of Conservation",
+    "modid": "conservationofmass",
+    "name": "Conservation Of Mass",
     "description": "Matter is not destroyed when things explode",
     "version": "${version}",
-    "mcversion": "${1.9.4}",
+    "mcversion": "${mcversion}",
     "url": "",
     "updateUrl": "",
     "authorList": ["StormCloud"],

@@ -1,4 +1,4 @@
-package StormCloud.lawofconservation.explosion;
+package StormCloud.conservationofmass.explosion;
 
 import java.util.List;
 import java.util.Random;
