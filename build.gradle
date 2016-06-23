@@ -82,5 +82,5 @@ processResources
 }
 jar {
      manifest.mainAttributes(
-        "FMLAT": "SC_CoM_AT.cfg")
+        'FMLAT': 'SC_CoM_AT.cfg')
 }
