@@ -11,9 +11,8 @@ Mining with explosions will also be more useful! Though be warned, some pieces o
 
 
 ===================TO DO================
-Stop vanilla behaviour - Almost
-	Recode vanilla behaviour - copy pasted vanilla, need to paraphrase.
-	Figure out Access Transformers - How do these things woooooork
-Implement new item drop system - Barely Started
-Implement custom drops per item - TBA
-Implement API for modded block explosion debris - TBA
+Stop vanilla behaviour - DONE!
+Implement new item drop system - Nearly Done
+Implement custom drops per item - About half done
+Implement API for modded block explosion debris - Started
+Add Items for special drops - Not started
