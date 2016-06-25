@@ -96,7 +96,7 @@ public class ConserveExplosion{
 				*/
 				//My Block drop
 				if (iblockstate.getMaterial() != Material.AIR){
-					switch(ExplosionRecipeHandler.GetBlockExplosionRecipeType(block)){
+					switch(ExplosionRecipeHandler.GetBlockExplosionRecipeType(block.getUnlocalizedName())){
 					case 1: //100% drop chance
 						if (block.canDropFromExplosion(explosion)){
 							block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F, 0);
