@@ -14,5 +14,5 @@ Mining with explosions will also be more useful! Though be warned, some pieces o
 Stop vanilla behaviour - DONE!
 Implement new item drop system - Nearly Done
 Implement custom drops per item - About half done
-Implement API for modded block explosion debris - Started
+Implement API for modded block explosion debris - Almost Done
 Add Items for special drops - Not started
