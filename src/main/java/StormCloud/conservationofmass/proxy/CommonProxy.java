@@ -1,6 +1,8 @@
 package StormCloud.conservationofmass.proxy;
 
 import StormCloud.conservationofmass.EventHandler;
+import StormCloud.conservationofmass.explosion.ExplosionRecipeHandler;
+import StormCloud.conservationofmass.explosion.api.APIhandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -9,20 +11,17 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class CommonProxy {
 	
 	public void preInit(FMLPreInitializationEvent event){
-		
+		new ExplosionRecipeHandler();
 	}
 	
 	public void init(FMLInitializationEvent event){
-		try{
-			MinecraftForge.EVENT_BUS.register(new EventHandler());
-		}catch(Exception exception){
-			exception.printStackTrace(); 
-		}finally{
-		}
-	}
-	
-	public void postInit(FMLPostInitializationEvent event){
 		
+		MinecraftForge.EVENT_BUS.register(new EventHandler());
+		
+		
+	}
+	public void postInit(FMLPostInitializationEvent event){
+		APIhandler.addRecipes();
 	}
 }
 

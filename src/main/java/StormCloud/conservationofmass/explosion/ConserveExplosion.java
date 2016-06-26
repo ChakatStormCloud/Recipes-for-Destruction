@@ -1,5 +1,6 @@
 package StormCloud.conservationofmass.explosion;
 
+
 import java.util.List;
 import java.util.Random;
 
@@ -84,28 +85,20 @@ public class ConserveExplosion{
 					this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, d3, d4, d5, new int[0]);
 				}
 				
-				//Vanilla block drop
-				/*
-				if (iblockstate.getMaterial() != Material.AIR){
-					if (block.canDropFromExplosion(explosion)){
-						block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F, 0);
-					}
-					
-					block.onBlockExploded(this.worldObj, blockpos, explosion);
-				}
-				*/
+				
 				//My Block drop
 				if (iblockstate.getMaterial() != Material.AIR){
-					switch(ExplosionRecipeHandler.GetBlockExplosionRecipeType(block)){
-					case 1: //100% drop chance
+					System.out.println(block.getUnlocalizedName());
+					switch(ExplosionRecipeHandler.getBlockExplosionRecipeType(block.getUnlocalizedName())){
+					case DROP: //100% drop chance
 						if (block.canDropFromExplosion(explosion)){
 							block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F, 0);
 						}
 						
-					case 2://chance of breaking
+					case BREAK://chance of breaking
 						
 						
-					default: //vanilla
+					case UNHANDLED: //vanilla
 						if (block.canDropFromExplosion(explosion)){
 							block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F / this.size, 0);
 						}
