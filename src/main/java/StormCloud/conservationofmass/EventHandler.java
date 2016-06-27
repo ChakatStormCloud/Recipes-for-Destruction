@@ -5,8 +5,8 @@ import net.minecraftforge.event.world.ExplosionEvent;
 
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class EventHandler {
-
+public class EventHandler{
+	
 	@SubscribeEvent
 	public void onExplosionDetonate(ExplosionEvent.Detonate event){
 		

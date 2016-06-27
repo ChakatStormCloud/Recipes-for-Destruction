@@ -1,5 +1,6 @@
 package StormCloud.conservationofmass.explosion;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 import com.google.common.collect.ArrayListMultimap;
@@ -81,5 +82,8 @@ public class ExplosionRecipeHandler {
 			System.out.println("Explosion Recipe for " + unlocalizedName +" added successfully.");
 		}
 	}
-
+	
+	public static Collection<ExplosionDebris> getBlockDebris(String blockUnlocalizedName){
+		return explosionRecipeMap.get(blockUnlocalizedName);
+	}
 }

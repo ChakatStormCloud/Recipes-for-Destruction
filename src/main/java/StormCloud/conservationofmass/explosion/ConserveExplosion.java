@@ -1,6 +1,8 @@
 package StormCloud.conservationofmass.explosion;
 
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -9,7 +11,10 @@ import com.google.common.collect.Lists;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -17,7 +22,7 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 
-// TODO: remove this tag after I finish the class
+
 public class ConserveExplosion{	
 	
 	
@@ -87,22 +92,43 @@ public class ConserveExplosion{
 				
 				
 				//My Block drop
-				if (iblockstate.getMaterial() != Material.AIR){
+				if (iblockstate.getMaterial() != Material.AIR && block.canDropFromExplosion(explosion)){
 					System.out.println(block.getUnlocalizedName());
+					
+					
 					switch(ExplosionRecipeHandler.getBlockExplosionRecipeType(block.getUnlocalizedName())){
-					case DROP: //100% drop chance
-						if (block.canDropFromExplosion(explosion)){
+					
+					case DROP: //=================100% drop chance====================//
+						block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F, 0);
+						
+						
+					case BREAK://==================chance of breaking=================//
+						
+						float distance = (float)Math.sqrt(blockpos.distanceSq(this.exploX, this.exploY, this.exploZ));
+						float resistence = block.getExplosionResistance(this.worldObj, blockpos, null, explosion);
+						float chance =( ((size*4.0F) / (distance*1.0F)) / (resistence*1.0F));
+						
+						if(chance > (6 + (4 * this.worldObj.rand.nextFloat() ) ) ){
+							
+							Collection<Item> dropList = new ArrayList<Item>();
+							
+							for(ExplosionDebris debris:ExplosionRecipeHandler.getBlockDebris(block.getUnlocalizedName())){
+								//stuff
+							}
+							
+							for(Item item : dropList){
+								EntityItem entityitem = new EntityItem(this.worldObj, blockpos.getX()+0.5,blockpos.getY()+0.5, blockpos.getZ()+0.5,new ItemStack(item,1,0,null));
+								this.worldObj.spawnEntityInWorld(entityitem);
+							}
+						}else{
 							block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F, 0);
 						}
 						
-					case BREAK://chance of breaking
+					case UNHANDLED: //===============vanilla===================//
+						block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F / this.size, 0);
 						
-						
-					case UNHANDLED: //vanilla
-						if (block.canDropFromExplosion(explosion)){
-							block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F / this.size, 0);
-						}
 					}
+					
 					block.onBlockExploded(this.worldObj, blockpos, explosion);
 				}
 				
