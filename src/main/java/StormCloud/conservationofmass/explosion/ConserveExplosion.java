@@ -101,12 +101,13 @@ public class ConserveExplosion{
 					case DROP: //=================100% drop chance====================//
 						block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F, 0);
 						
-						
+						break;
 					case BREAK://==================chance of breaking=================//
 						
 						float distance = (float)Math.sqrt(blockpos.distanceSq(this.exploX, this.exploY, this.exploZ));
 						float resistence = block.getExplosionResistance(this.worldObj, blockpos, null, explosion);
 						float chance =( ((size*4.0F) / (distance*1.0F)) / (resistence*1.0F));
+						System.out.println("distance : "+distance+", resistance : "+resistence+", size : "+size+", chance = "+chance);
 						
 						if(chance > (6 + (4 * this.worldObj.rand.nextFloat() ) ) ){
 							
@@ -123,10 +124,10 @@ public class ConserveExplosion{
 						}else{
 							block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F, 0);
 						}
-						
+						break;
 					case UNHANDLED: //===============vanilla===================//
 						block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F / this.size, 0);
-						
+						break;
 					}
 					
 					block.onBlockExploded(this.worldObj, blockpos, explosion);
