@@ -102,32 +102,16 @@ public class ConserveExplosion{
 						block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F, 0);
 						
 						break;
+						
 					case BREAK://==================chance of breaking=================//
 						
-						float distance = (float)Math.sqrt(blockpos.distanceSq(this.exploX, this.exploY, this.exploZ));
-						float resistence = block.getExplosionResistance(this.worldObj, blockpos, null, explosion);
-						float chance =( ((size*4.0F) / (distance*1.0F)) / (resistence*1.0F));
-						System.out.println("distance : "+distance+", resistance : "+resistence+", size : "+size+", chance = "+chance);
-						
-						if(chance > (6 + (4 * this.worldObj.rand.nextFloat() ) ) ){
-							
-							Collection<Item> dropList = new ArrayList<Item>();
-							
-							for(ExplosionDebris debris:ExplosionRecipeHandler.getBlockDebris(block.getUnlocalizedName())){
-								//stuff
-							}
-							
-							for(Item item : dropList){
-								EntityItem entityitem = new EntityItem(this.worldObj, blockpos.getX()+0.5,blockpos.getY()+0.5, blockpos.getZ()+0.5,new ItemStack(item,1,0,null));
-								this.worldObj.spawnEntityInWorld(entityitem);
-							}
-						}else{
-							block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F, 0);
-						}
+						smashBlock(block,blockpos);
 						break;
+						
 					case UNHANDLED: //===============vanilla===================//
 						block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F / this.size, 0);
 						break;
+						
 					}
 					
 					block.onBlockExploded(this.worldObj, blockpos, explosion);
@@ -149,5 +133,37 @@ public class ConserveExplosion{
 		}
 	}
 	
+	private void smashBlock(Block block, BlockPos blockpos){
+		float distance = (float)Math.sqrt(blockpos.distanceSqToCenter(this.exploX, this.exploY, this.exploZ));
+		float resistence = block.getExplosionResistance(this.worldObj, blockpos, null, explosion);
+		float chance = ( ((size*4.0F) / (distance*0.5F)) / (resistence*1.0F));
+		
+		System.out.println("distance : "+distance+", resistance : "+resistence+", size : "+size+", chance = "+chance);
+		
+		chance =- (6 + (4 * this.worldObj.rand.nextFloat() ) );
+		if(chance > 0){
+			
+			Collection<Item> dropList = new ArrayList<Item>();
+			Collection<ExplosionDebris> debrisList = new ArrayList<ExplosionDebris>();
+			
+			int m = ExplosionRecipeHandler.getBlockExplosionMass(block.getUnlocalizedName());
+			
+			while(m < 0){
+				
+				for(ExplosionDebris debris : debrisList){
+					if(debris.weight <= 1.7F && debris.mass <= m && debris.dropped < debris.maxDropped){
+						
+					}
+				}
+				
+			}
+			for(Item item : dropList){
+				EntityItem entityitem = new EntityItem(this.worldObj, blockpos.getX()+0.5,blockpos.getY()+0.5, blockpos.getZ()+0.5,new ItemStack(item,1,0,null));
+				this.worldObj.spawnEntityInWorld(entityitem);
+			}
+		}else{
+			block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F, 0);
+		}
+	}
 }
 
