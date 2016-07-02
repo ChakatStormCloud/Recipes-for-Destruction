@@ -107,8 +107,9 @@ public class ConserveExplosion{
 						
 						smashBlock(block,blockpos);
 						break;
-						
+					case ORE:
 					case UNHANDLED: //===============vanilla===================//
+					default:
 						block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F / this.size, 0);
 						break;
 						
@@ -140,23 +141,21 @@ public class ConserveExplosion{
 		
 		System.out.println("distance : "+distance+", resistance : "+resistence+", size : "+size+", chance = "+chance);
 		
-		chance =- (6 + (4 * this.worldObj.rand.nextFloat() ) );
+		chance =- (4 + (5 * this.worldObj.rand.nextFloat() ) );
 		if(chance > 0){
 			
-			Collection<Item> dropList = new ArrayList<Item>();
-			Collection<ExplosionDebris> debrisList = new ArrayList<ExplosionDebris>();
-			
-			int m = ExplosionRecipeHandler.getBlockExplosionMass(block.getUnlocalizedName());
-			
-			while(m < 0){
-				
-				for(ExplosionDebris debris : debrisList){
-					if(debris.weight <= 1.7F && debris.mass <= m && debris.dropped < debris.maxDropped){
-						
-					}
+			ArrayList<Item> dropList = new ArrayList<Item>();
+			Collection<Item> debrisList = ExplosionRecipeHandler.getExplosionRecipeItems();
+			for(Item item:debrisList){
+				if(ExplosionRecipeHandler.getItemBreakable()){
+					
+				}else{
+					dropList.
 				}
 				
+				
 			}
+			
 			for(Item item : dropList){
 				EntityItem entityitem = new EntityItem(this.worldObj, blockpos.getX()+0.5,blockpos.getY()+0.5, blockpos.getZ()+0.5,new ItemStack(item,1,0,null));
 				this.worldObj.spawnEntityInWorld(entityitem);

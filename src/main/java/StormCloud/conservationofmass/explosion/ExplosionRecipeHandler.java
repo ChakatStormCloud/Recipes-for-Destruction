@@ -1,15 +1,18 @@
 package StormCloud.conservationofmass.explosion;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
+import net.minecraft.item.Item;
+
 
 public class ExplosionRecipeHandler {
 	
-	public static enum RecipeType{DROP,BREAK,UNHANDLED};
+	public static enum RecipeType{DROP,BREAK,ORE,UNHANDLED};
 	
 	private class ExplosionRecipeDescription{
 		public final RecipeType type;
@@ -85,5 +88,22 @@ public class ExplosionRecipeHandler {
 	
 	public static Collection<ExplosionDebris> getBlockDebris(String blockUnlocalizedName){
 		return explosionRecipeMap.get(blockUnlocalizedName);
+	}
+	
+	public static Collection<Item> getExplosionRecipeItems(){
+		Collection<Item> recipeItems = new ArrayList<Item>();
+		
+		
+		
+		
+		
+		
+		return recipeItems;
+	}
+	
+	public static boolean getItemBreakable(){
+		
+		
+		return false;
 	}
 }
