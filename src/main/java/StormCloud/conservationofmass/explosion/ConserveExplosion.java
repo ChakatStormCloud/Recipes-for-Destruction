@@ -107,7 +107,7 @@ public class ConserveExplosion{
 						
 						smashBlock(block,blockpos);
 						break;
-					case ORE:
+					case ORE: //no break; stop it just runs default =D being lazy ftw
 					case UNHANDLED: //===============vanilla===================//
 					default:
 						block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F / this.size, 0);
@@ -117,7 +117,6 @@ public class ConserveExplosion{
 					
 					block.onBlockExploded(this.worldObj, blockpos, explosion);
 				}
-				
 				
 			}
 		}
@@ -144,20 +143,26 @@ public class ConserveExplosion{
 		chance =- (4 + (5 * this.worldObj.rand.nextFloat() ) );
 		if(chance > 0){
 			
-			ArrayList<Item> dropList = new ArrayList<Item>();
-			Collection<Item> debrisList = ExplosionRecipeHandler.getExplosionRecipeItems();
-			for(Item item:debrisList){
+			ArrayList<ItemStack> dropList = new ArrayList<ItemStack>();
+			Collection<Item> recipeList = ExplosionRecipeHandler.getExplosionRecipeItems();
+			for(Item item:recipeList){
 				if(ExplosionRecipeHandler.getItemBreakable()){
-					
+					if(this.worldObj.rand.nextBoolean()){
+						//break then add
+						
+						dropList.add(ExplosionRecipeHandler.getItemBreakDownItem());
+					}else{
+						dropList.add(new ItemStack(item));
+					}
 				}else{
-					dropList.
+					dropList.add(new ItemStack(item));
 				}
 				
 				
 			}
 			
-			for(Item item : dropList){
-				EntityItem entityitem = new EntityItem(this.worldObj, blockpos.getX()+0.5,blockpos.getY()+0.5, blockpos.getZ()+0.5,new ItemStack(item,1,0,null));
+			for(ItemStack itemstack : dropList){
+				EntityItem entityitem = new EntityItem(this.worldObj, blockpos.getX()+0.5,blockpos.getY()+0.5, blockpos.getZ()+0.5,itemstack);
 				this.worldObj.spawnEntityInWorld(entityitem);
 			}
 		}else{

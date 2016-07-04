@@ -8,6 +8,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 
 public class ExplosionRecipeHandler {
@@ -16,10 +17,9 @@ public class ExplosionRecipeHandler {
 	
 	private class ExplosionRecipeDescription{
 		public final RecipeType type;
-		public final int mass;
+		
 		public ExplosionRecipeDescription(RecipeType t, int m){
 			this.type = t;
-			this.mass = m;
 		}
 	}
 	
@@ -33,14 +33,10 @@ public class ExplosionRecipeHandler {
 		explosionBlockDescriptionMap = new HashMap<String,ExplosionRecipeDescription>();
 		ExplosionRecipeHandler.handler = this;
 	}
-	/**
-	 * For checking if any recipe has been added for a block
-	 * @param Block.getUnlocalizedName()
-	 * @return true if there's a recipe, false if not
-	 */
-	public static Boolean isBlockHandled(String string){
+
+/*	public static Boolean isBlockHandled(String string){
 		return(getBlockExplosionRecipeType(string) != RecipeType.UNHANDLED);
-	}
+	}*/
 	/**
 	 * For checking the specific type of a recipe, or if it's handled at all.
 	 *@param Block.getUnlocalizedName()
@@ -56,12 +52,12 @@ public class ExplosionRecipeHandler {
 		return RecipeType.UNHANDLED;
 	}
 	
-	public static int getBlockExplosionMass(String string){
+/*	public static int getBlockExplosionMass(String string){
 		if(explosionBlockDescriptionMap.containsKey(string)){
 			return explosionBlockDescriptionMap.get(string).mass;
 		}
 		return 0;
-	}
+	}*/
 	
 	/**
 	 * 
@@ -86,13 +82,13 @@ public class ExplosionRecipeHandler {
 		}
 	}
 	
-	public static Collection<ExplosionDebris> getBlockDebris(String blockUnlocalizedName){
+/*	public static Collection<ExplosionDebris> getBlockDebris(String blockUnlocalizedName){
 		return explosionRecipeMap.get(blockUnlocalizedName);
-	}
+	}*/
 	
 	public static Collection<Item> getExplosionRecipeItems(){
 		Collection<Item> recipeItems = new ArrayList<Item>();
-		
+		// TODO method stub
 		
 		
 		
@@ -102,8 +98,13 @@ public class ExplosionRecipeHandler {
 	}
 	
 	public static boolean getItemBreakable(){
-		
+		// TODO method stub
 		
 		return false;
 	}
+	public static ItemStack getItemBreakDownItem() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
