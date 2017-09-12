@@ -2,19 +2,26 @@ package StormCloud.conservationofmass.explosion.api;
 
 import StormCloud.conservationofmass.explosion.ExplosionRecipeHandler;
 import StormCloud.conservationofmass.explosion.ExplosionRecipeHandler.RecipeType;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import StormCloud.conservationofmass.explosion.ExplosionDebris;
 
 public class Vanilla {
 	
 	public static void addRecipes(){
-		ExplosionDebris stick = new ExplosionDebris(Item.getByNameOrId("minecraft:stick"),1,1,1,0);
-		ExplosionDebris plank = new ExplosionDebris(Item.getByNameOrId("minecraft:plank"),1,2,2,0);
-		ExplosionRecipeHandler.addExplosionRecipe("tile.dirt",RecipeType.DROP,0);
-		ExplosionRecipeHandler.addExplosionRecipe("tile.grass",RecipeType.DROP,0);
-		ExplosionRecipeHandler.addExplosionRecipe("tile.stone",RecipeType.DROP,0);
-		ExplosionRecipeHandler.addExplosionRecipe("tile.chest",RecipeType.BREAK,16,stick,plank);
-		ExplosionRecipeHandler.addExplosionRecipe("tile.workbench",RecipeType.BREAK,8,stick,plank);
+		System.out.println("Trying to add recipes");
+		Item planks = Item.getItemFromBlock(Block.getBlockFromName("planks")); 
+		Item stick = Item.getByNameOrId("stick");
+		
+		ExplosionRecipeHandler.addExplosionResult(Item.getItemFromBlock(Block.getBlockFromName("chest")), 6f, planks,planks,planks,planks,planks,planks,planks,planks);
+		ExplosionRecipeHandler.addExplosionResult(Item.getItemFromBlock(Block.getBlockFromName("crafting_table")), 4f, planks,planks,planks,planks);
+		
+		ExplosionRecipeHandler.addExplosionResult(planks, 2f, stick,stick);
+		ExplosionRecipeHandler.addExplosionResult(Item.getItemFromBlock(Block.getBlockFromName("cobble")), 16, Item.getItemFromBlock(Block.getBlockFromName("gravel")));
+		ExplosionRecipeHandler.handleBlockExplosion(Block.getBlockFromName("dirt"),RecipeType.DROP);
+		ExplosionRecipeHandler.handleBlockExplosion(Block.getBlockFromName("grass"),RecipeType.DROP);
+		ExplosionRecipeHandler.handleBlockExplosion(Block.getBlockFromName("stone"),RecipeType.BREAK);
+		ExplosionRecipeHandler.handleBlockExplosion(Block.getBlockFromName("chest"),RecipeType.BREAK);
+		ExplosionRecipeHandler.handleBlockExplosion(Block.getBlockFromName("crafting_table"),RecipeType.BREAK);
 		
 	}
 	

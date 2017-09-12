@@ -1,89 +1,100 @@
 package StormCloud.conservationofmass.explosion;
 
-import java.util.Collection;
+
 import java.util.HashMap;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 
 
 public class ExplosionRecipeHandler {
 	
 	public static enum RecipeType{DROP,BREAK,UNHANDLED};
 	
-	private class ExplosionRecipeDescription{
-		public final RecipeType type;
-		public final int mass;
-		public ExplosionRecipeDescription(RecipeType t, int m){
-			this.type = t;
-			this.mass = m;
+	
+	public static class Debris{
+		public final float resistance;
+		public final Item[] result;
+		public Debris(float c, Item[] r) {
+			this.resistance = c;
+			this.result = r;
 		}
 	}
 	
-	private static Multimap<String,ExplosionDebris> explosionRecipeMap;
-	private static HashMap<String,ExplosionRecipeDescription> explosionBlockDescriptionMap;
-	private static ExplosionRecipeHandler handler;
+
+	private static HashMap<Item,Debris> explosionDebrisMap;
+	private static HashMap<Block,RecipeType> explosionRecipeMap2;
 	
 	
-	public ExplosionRecipeHandler(){
-		explosionRecipeMap = ArrayListMultimap.create();
-		explosionBlockDescriptionMap = new HashMap<String,ExplosionRecipeDescription>();
-		ExplosionRecipeHandler.handler = this;
-	}
-	/**
-	 * For checking if any recipe has been added for a block
-	 * @param Block.getUnlocalizedName()
-	 * @return true if there's a recipe, false if not
-	 */
-	public static Boolean isBlockHandled(String string){
-		return(getBlockExplosionRecipeType(string) != RecipeType.UNHANDLED);
-	}
-	/**
-	 * For checking the specific type of a recipe, or if it's handled at all.
-	 *@param Block.getUnlocalizedName()
-	 *@return 0; Unhandled, default to vanilla
-	 *@return 1; Drop normally with 100% chance, for things like dirt, stone, bricks, etc.
-	 *@return 2; Drop advanced with a chance of smashing into debris
-	**/	
-	public static RecipeType getBlockExplosionRecipeType(String string){
-		if (explosionBlockDescriptionMap.containsKey(string)){
-			return explosionBlockDescriptionMap.get(string).type;
-			
-		}
-		return RecipeType.UNHANDLED;
-	}
-	
-	public static int getBlockExplosionMass(String string){
-		if(explosionBlockDescriptionMap.containsKey(string)){
-			return explosionBlockDescriptionMap.get(string).mass;
-		}
-		return 0;
+	public static void init(){
+		explosionDebrisMap = new HashMap<Item,Debris>();
+		explosionRecipeMap2 = new HashMap<Block,RecipeType>();
 	}
 	
 	/**
+	 * Adds a block to the handling, and tells how to treat it when it get's blown up
 	 * 
-	 * @param block.getUnlocalizedName()
-	 * @param resultList
-	 * @return true if successful, false if it found a recipe already.
+	 * @param Block
+	 * @param RecipeType; How to handle the block when it's blown up
+	 * 		DROP: just drop it, use for things like dirt
+	 * 		BREAK; BETTER: drop pieces or broken parts
+	 * 		UNHANDLED; Use vanilla mechanics
 	 */
-	public static void addExplosionRecipe(String unlocalizedName,RecipeType recipeType,int mass,ExplosionDebris... debris){
+	public static void handleBlockExplosion(Block block, RecipeType type) {
+		//null check
+		if (block==null) {System.out.println("Can't Add Block! Block Null!");return;}
 		//check if there's already a recipe
-		if(explosionBlockDescriptionMap.containsKey(unlocalizedName)){
-			//tell somebody
-			System.out.println("Explosion Recipe for " + unlocalizedName + " already exits!");
+		if(explosionRecipeMap2.containsKey(block)) {
+			System.out.println("Explosion Handler Recipe for "+block.getUnlocalizedName()+" already exists!");
+		}else {
+			//normal behaviour
+			explosionRecipeMap2.put(block, type);
+			System.out.println("Explosion Handler Recipe for "+block.getUnlocalizedName()+" successfully added!");
+		}
+		
+	}
+	
+	/**
+	 * Adds the Result for an item, which is used when something is blown up with advanced handling
+	 * It will go down the results recursively up to a limit based on the distance from epicenter,
+	 * strength of the explosion, and explosion resistance you set here.
+	 * 
+	 * @param item; inital item or itemblock 
+	 * @param resistance; explosion resistance, for itemblocks, suggest using regular explosion resistance 
+	 * @param result[]; collection of items, that this item will break into, don't use too many.
+	 */
+	public static void addExplosionResult(Item item, float resistance, Item... result) {
+		//null check
+		if (item==null) {System.out.println("Can't Add Item! Item Null!");return;}
+		//check if there's already a recipe
+		if(explosionDebrisMap.containsKey(item)){//tell somebody
+			System.out.println("Explosion Debris Recipe for " + item.getUnlocalizedName() + " already exists!");
 		}else{
 			//normal behaviour
-			explosionBlockDescriptionMap.put(unlocalizedName, handler.new ExplosionRecipeDescription(recipeType,mass));
-			
-			for(ExplosionDebris newDebris : debris){
-				explosionRecipeMap.put(unlocalizedName, newDebris);
-			}
+			explosionDebrisMap.put(item, new Debris(resistance, result));
 			//we did it!! wooo
-			System.out.println("Explosion Recipe for " + unlocalizedName +" added successfully.");
+			System.out.println("Explosion Debris Recipe for " + item.getUnlocalizedName() +" added successfully.");
+		}
+		
+	}
+	/**
+	 * Returns the Recipe type, or UNHANDLED if none found
+	 * (a block may also be registered as UNHANDLED to enforce vanilla handling)
+	 */
+	public static RecipeType getHandledType(Block block) {
+		if(explosionRecipeMap2.containsKey(block)) {
+			return explosionRecipeMap2.get(block);
+		}else {
+			return RecipeType.UNHANDLED;
 		}
 	}
 	
-	public static Collection<ExplosionDebris> getBlockDebris(String blockUnlocalizedName){
-		return explosionRecipeMap.get(blockUnlocalizedName);
+	public static Debris getDebris(Item item) {
+		if(explosionDebrisMap.containsKey(item)) {
+			return explosionDebrisMap.get(item);
+		}
+		
+		return null;
 	}
+	
 }

@@ -2,12 +2,12 @@ package StormCloud.conservationofmass.explosion;
 
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
 import com.google.common.collect.Lists;
 
+import StormCloud.conservationofmass.explosion.ExplosionRecipeHandler.Debris;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -46,7 +46,7 @@ public class ConserveExplosion{
 		this.affectedBlockPosList = Lists.<BlockPos>newArrayList();
 		this.affectedBlockPosList.addAll(affectedblocksIn);
 		
-		this.smoking = explosion.isSmoking; //well crap...
+		this.smoking = explosion.isSmoking;
 		this.flaming = explosion.isFlaming;
 		
 		this.exploX = explosion.explosionX;
@@ -93,10 +93,10 @@ public class ConserveExplosion{
 				
 				//My Block drop
 				if (iblockstate.getMaterial() != Material.AIR && block.canDropFromExplosion(explosion)){
-					System.out.println(block.getUnlocalizedName());
+					//System.out.println(block.getUnlocalizedName());
 					
 					
-					switch(ExplosionRecipeHandler.getBlockExplosionRecipeType(block.getUnlocalizedName())){
+					switch(ExplosionRecipeHandler.getHandledType(block)){
 					
 					case DROP: //=================100% drop chance====================//
 						block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F, 0);
@@ -105,12 +105,13 @@ public class ConserveExplosion{
 						
 					case BREAK://==================chance of breaking=================//
 						
-						smashBlock(block,blockpos);
+						betterSmashBlock(block,blockpos);
 						break;
 						
 					case UNHANDLED: //===============vanilla===================//
 						block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F / this.size, 0);
 						break;
+						
 						
 					}
 					
@@ -133,37 +134,40 @@ public class ConserveExplosion{
 		}
 	}
 	
-	private void smashBlock(Block block, BlockPos blockpos){
+	private void betterSmashBlock(Block block, BlockPos blockpos) {
 		float distance = (float)Math.sqrt(blockpos.distanceSqToCenter(this.exploX, this.exploY, this.exploZ));
-		float resistence = block.getExplosionResistance(this.worldObj, blockpos, null, explosion);
-		float chance = ( ((size*4.0F) / (distance*0.5F)) / (resistence*1.0F));
 		
-		System.out.println("distance : "+distance+", resistance : "+resistence+", size : "+size+", chance = "+chance);
+		//ItemStack itemblock = block.getPickBlock(block.getDefaultState(), null, this.worldObj, blockpos, null);
+		Item itemblock = block.getItemDropped(block.getDefaultState(), exploRNG, 0);
 		
-		chance =- (6 + (4 * this.worldObj.rand.nextFloat() ) );
-		if(chance > 0){
-			
-			Collection<Item> dropList = new ArrayList<Item>();
-			Collection<ExplosionDebris> debrisList = new ArrayList<ExplosionDebris>();
-			
-			int m = ExplosionRecipeHandler.getBlockExplosionMass(block.getUnlocalizedName());
-			
-			while(m < 0){
-				
-				for(ExplosionDebris debris : debrisList){
-					if(debris.weight <= 1.7F && debris.mass <= m && debris.dropped < debris.maxDropped){
-						
-					}
-				}
-				
+		float power = (size*4f)/distance;
+		
+		ArrayList<Item> start = new ArrayList<Item>();
+		ArrayList<Item> drops = new ArrayList<Item>();
+		start.add(itemblock);
+		
+		int i;
+		System.out.println("Begining breakdown");
+		while(start.size() > 0) {
+			i = exploRNG.nextInt(start.size());
+			Item item = start.get(i);
+			Debris debby = ExplosionRecipeHandler.getDebris(start.get(i));
+			if(debby == null) {System.out.println("Debby is NULL PANIC!!");}
+			if(debby != null && power > debby.resistance) {
+				for(Item item2: debby.result) {start.add(item2);}
+				start.remove(item);
+				power -= debby.resistance;
+			}else{
+				drops.add(item);
+				start.remove(item);
 			}
-			for(Item item : dropList){
-				EntityItem entityitem = new EntityItem(this.worldObj, blockpos.getX()+0.5,blockpos.getY()+0.5, blockpos.getZ()+0.5,new ItemStack(item,1,0,null));
-				this.worldObj.spawnEntityInWorld(entityitem);
-			}
-		}else{
-			block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F, 0);
 		}
+		for(Item item : drops) {
+			EntityItem entityitem = new EntityItem(this.worldObj, blockpos.getX()+0.5,blockpos.getY()+0.5, blockpos.getZ()+0.5,new ItemStack(item));
+			this.worldObj.spawnEntityInWorld(entityitem);
+		}
+		start.clear();
+		drops.clear();
 	}
 }
 
