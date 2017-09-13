@@ -17,6 +17,7 @@ public class ClientProxy extends CommonProxy{
 	@Override
 	public void postInit(FMLPostInitializationEvent event){
 		super.postInit(event);
+		StormCloud.recipesfordestruction.EventHandler.particles = true;
 	}
 	
 }

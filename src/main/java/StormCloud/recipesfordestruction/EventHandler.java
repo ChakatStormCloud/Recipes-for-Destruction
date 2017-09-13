@@ -7,11 +7,13 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EventHandler{
 	
+	public static boolean particles = false;
+	
 	@SubscribeEvent
 	public void onExplosionDetonate(ExplosionEvent.Detonate event){
 		
 		ConserveExplosion cExplosion = new ConserveExplosion(event.getWorld(),event.getExplosion(),event.getAffectedBlocks());
-		cExplosion.Detonate(true); //This should only be true on the client...
+		cExplosion.Detonate(particles); //This should only be true on the client...
 		//I might have to make 2 event handlers one for the client, 1 for the server. should work... right?
 		
 		
