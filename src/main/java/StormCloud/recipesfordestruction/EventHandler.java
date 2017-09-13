@@ -1,6 +1,6 @@
-package StormCloud.conservationofmass;
+package StormCloud.recipesfordestruction;
 
-import StormCloud.conservationofmass.explosion.ConserveExplosion;
+import StormCloud.recipesfordestruction.explosion.ConserveExplosion;
 import net.minecraftforge.event.world.ExplosionEvent;
 
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

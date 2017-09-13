@@ -1,4 +1,4 @@
-package StormCloud.conservationofmass.proxy;
+package StormCloud.recipesfordestruction.proxy;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;

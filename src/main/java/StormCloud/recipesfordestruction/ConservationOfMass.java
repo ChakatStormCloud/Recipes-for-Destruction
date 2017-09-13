@@ -1,7 +1,6 @@
-package StormCloud.conservationofmass;
+package StormCloud.recipesfordestruction;
 
-import StormCloud.conservationofmass.proxy.CommonProxy;
-
+import StormCloud.recipesfordestruction.proxy.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;

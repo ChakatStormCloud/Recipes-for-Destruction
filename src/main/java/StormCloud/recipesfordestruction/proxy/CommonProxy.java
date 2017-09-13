@@ -1,8 +1,8 @@
-package StormCloud.conservationofmass.proxy;
+package StormCloud.recipesfordestruction.proxy;
 
-import StormCloud.conservationofmass.EventHandler;
-import StormCloud.conservationofmass.explosion.ExplosionRecipeHandler;
-import StormCloud.conservationofmass.explosion.api.APIhandler;
+import StormCloud.recipesfordestruction.EventHandler;
+import StormCloud.recipesfordestruction.explosion.ExplosionRecipeHandler;
+import StormCloud.recipesfordestruction.explosion.api.APIhandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;

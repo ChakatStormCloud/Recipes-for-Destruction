@@ -1,4 +1,4 @@
-package StormCloud.conservationofmass.explosion;
+package StormCloud.recipesfordestruction.explosion;
 
 
 import java.util.HashMap;

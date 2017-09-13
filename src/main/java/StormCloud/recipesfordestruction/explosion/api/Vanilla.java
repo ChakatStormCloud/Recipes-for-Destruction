@@ -1,7 +1,7 @@
-package StormCloud.conservationofmass.explosion.api;
+package StormCloud.recipesfordestruction.explosion.api;
 
-import StormCloud.conservationofmass.explosion.ExplosionRecipeHandler;
-import StormCloud.conservationofmass.explosion.ExplosionRecipeHandler.RecipeType;
+import StormCloud.recipesfordestruction.explosion.ExplosionRecipeHandler;
+import StormCloud.recipesfordestruction.explosion.ExplosionRecipeHandler.RecipeType;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 

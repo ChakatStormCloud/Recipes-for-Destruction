@@ -1,4 +1,4 @@
-package StormCloud.conservationofmass.explosion;
+package StormCloud.recipesfordestruction.explosion;
 
 
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.Random;
 
 import com.google.common.collect.Lists;
 
-import StormCloud.conservationofmass.explosion.ExplosionRecipeHandler.Debris;
+import StormCloud.recipesfordestruction.explosion.ExplosionRecipeHandler.Debris;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

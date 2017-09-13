@@ -1,7 +1,7 @@
 [
   {
-    "modid": "conservationofmass",
-    "name": "Conservation Of Mass",
+    "modid": "recipesfordestruction",
+    "name": "Recipes for Destruction",
     "description": "Matter is not destroyed when things explode",
     "version": "${version}",
     "mcversion": "${mcversion}",
