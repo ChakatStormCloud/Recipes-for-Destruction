@@ -38,6 +38,8 @@ public class Vanilla {
 		addDebris(Item.getItemFromBlock(Blocks.BOOKSHELF),4f,planks,planks,planks,planks,planks,planks,Items.BOOK,Items.BOOK,Items.BOOK);
 		addDebris(Items.BOOK,2f,Items.PAPER,Items.PAPER,Items.PAPER);
 		addDebris(Item.getItemFromBlock(Blocks.OAK_FENCE),5f,planks,stick);
+		//TODO: find a way to handle subitems, damage values and etc.
+		
 		
 		addRecipe(Blocks.OAK_FENCE,RecipeType.BREAK);
 		addRecipe(Blocks.BOOKSHELF,RecipeType.BREAK);
