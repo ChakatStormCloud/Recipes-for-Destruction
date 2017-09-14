@@ -37,7 +37,9 @@ public class Vanilla {
 		addDebris(Item.getItemFromBlock(Blocks.NOTEBLOCK),6f,planks,planks,planks,planks,planks,planks,planks,planks,redstone);
 		addDebris(Item.getItemFromBlock(Blocks.BOOKSHELF),4f,planks,planks,planks,planks,planks,planks,Items.BOOK,Items.BOOK,Items.BOOK);
 		addDebris(Items.BOOK,2f,Items.PAPER,Items.PAPER,Items.PAPER);
+		addDebris(Item.getItemFromBlock(Blocks.OAK_FENCE),5f,planks,stick);
 		
+		addRecipe(Blocks.OAK_FENCE,RecipeType.BREAK);
 		addRecipe(Blocks.BOOKSHELF,RecipeType.BREAK);
 		addRecipe(Blocks.NOTEBLOCK,RecipeType.BREAK);
 		addRecipe(Blocks.CAULDRON,RecipeType.BREAK);
