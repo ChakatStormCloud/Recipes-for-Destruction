@@ -9,13 +9,13 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = MainLib.MODID, name = MainLib.MODNAME , version = MainLib.VERSION)
-public class ConservationOfMass {
+public class RecipesForDestruction {
 	public static final String MODID = MainLib.MODID;
 	public static final String VERSION = MainLib.VERSION;
 	public static final String MODNAME = MainLib.MODNAME;
 	
 	@Mod.Instance(MainLib.MODID)
-	public static ConservationOfMass instance;
+	public static RecipesForDestruction instance;
 	
 	
 	@SidedProxy(clientSide = MainLib.CLIENTCLASS, serverSide = MainLib.SERVERCLASS)

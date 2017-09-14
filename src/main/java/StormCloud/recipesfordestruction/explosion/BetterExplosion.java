@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 
 
 
-public class ConserveExplosion{	
+public class BetterExplosion{	
 	
 	
 	private final World worldObj;
@@ -38,7 +38,7 @@ public class ConserveExplosion{
 	private final Random exploRNG;
 	
 	
-	public ConserveExplosion(World worldIn,Explosion explosionIn,List<BlockPos> affectedblocksIn){
+	public BetterExplosion(World worldIn,Explosion explosionIn,List<BlockPos> affectedblocksIn){
 		
 		this.exploRNG = new Random();
 		this.worldObj = worldIn;
