@@ -13,8 +13,7 @@ public class EventHandler{
 	public void onExplosionDetonate(ExplosionEvent.Detonate event){
 		
 		BetterExplosion betterExplosion = new BetterExplosion(event.getWorld(),event.getExplosion(),event.getAffectedBlocks());
-		betterExplosion.Detonate(particles); //This should only be true on the client...
-		//I might have to make 2 event handlers one for the client, 1 for the server. should work... right?
+		betterExplosion.Detonate(particles); 
 		
 		
 	}
