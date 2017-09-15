@@ -12,6 +12,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -137,37 +138,39 @@ public class BetterExplosion{
 	private void betterSmashBlock(Block block, BlockPos blockpos) {
 		float distance = (float)Math.sqrt(blockpos.distanceSqToCenter(this.exploX, this.exploY, this.exploZ));
 		
-		//ItemStack itemblock = block.getPickBlock(block.getDefaultState(), null, this.worldObj, blockpos, null);
-		Item itemblock = block.getItemDropped(block.getExtendedState(worldObj.getBlockState(blockpos),worldObj,blockpos), exploRNG, 0);
-		
+		//Item itemblock = block.getItemDropped(block.getExtendedState(worldObj.getBlockState(blockpos),worldObj,blockpos), exploRNG, 0);
+		ItemStack blockstack = block.getPickBlock(block.getExtendedState(worldObj.getBlockState(blockpos),worldObj, blockpos),
+					null, worldObj, blockpos,
+					this.explosion.getExplosivePlacedBy() instanceof EntityPlayer ? (EntityPlayer)this.explosion.getExplosivePlacedBy() : null  );
 		float power = ((size*4f)/distance)+exploRNG.nextFloat();
 		
-		ArrayList<Item> start = new ArrayList<Item>();
-		ArrayList<Item> drops = new ArrayList<Item>();
-		start.add(itemblock);
+		//ArrayList<Item> start = new ArrayList<Item>();
+		ArrayList<ItemStack> stacksIn = new ArrayList<ItemStack>();
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		stacksIn.add(blockstack);
 		
 		int i;
 		System.out.println("Begining breakdown");
-		while(start.size() > 0) {
+		while(stacksIn.size() > 0) {
 			
-			i = exploRNG.nextInt(start.size());
-			Item item = start.get(i);
-			Debris debby = ExplosionRecipeHandler.getDebris(start.get(i));
+			i = exploRNG.nextInt(stacksIn.size());
+			ItemStack itemstack = stacksIn.get(i);
+			Debris debby = ExplosionRecipeHandler.getDebris(itemstack.getItem());
 			
 			if(debby != null && power > debby.resistance) {
-				for(Item item2: debby.result) {start.add(item2);}
-				start.remove(item);
+				for(Item item2: debby.result) {stacksIn.add(new ItemStack(item2,1));}
+				stacksIn.remove(itemstack);
 				power -= debby.resistance;
 			}else{
-				drops.add(item);
-				start.remove(item);
-			}
+				drops.add(itemstack);
+				stacksIn.remove(itemstack);
+			} 
 		}
-		for(Item item : drops) {
-			EntityItem entityitem = new EntityItem(this.worldObj, blockpos.getX()+0.5,blockpos.getY()+0.5, blockpos.getZ()+0.5,new ItemStack(item));
+		for(ItemStack itemstack : drops) {
+			EntityItem entityitem = new EntityItem(this.worldObj, blockpos.getX()+0.5,blockpos.getY()+0.5, blockpos.getZ()+0.5,itemstack);
 			this.worldObj.spawnEntityInWorld(entityitem);
 		}
-		start.clear();
+		stacksIn.clear();
 		drops.clear();
 	}
 }
