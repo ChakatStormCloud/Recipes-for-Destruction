@@ -30,9 +30,9 @@ public class Vanilla {
 		addDebris(Item.getItemFromBlock(Blocks.DISPENSER),8f,cobble,cobble,cobble,cobble,cobble,cobble,cobble,redstone,Items.BOW);
 		addDebris(Items.BOW,2f,stick,stick,stick,string,string,string);
 		addDebris(Item.getItemFromBlock(Blocks.DROPPER),8f,cobble,cobble,cobble,cobble,cobble,cobble,cobble,redstone);
-		addDebris(Item.getItemFromBlock(Blocks.RAIL),5f,stick,Items.IRON_INGOT);
-		addDebris(Item.getItemFromBlock(Blocks.PISTON),7f,cobble,cobble,cobble,cobble,redstone,planks,planks,planks,Items.IRON_INGOT);
-		addDebris(Item.getItemFromBlock(Blocks.STICKY_PISTON),7f,cobble,cobble,cobble,cobble,redstone,planks,planks,planks,Items.IRON_INGOT,Items.SLIME_BALL);
+		addDebris(Item.getItemFromBlock(Blocks.RAIL),5f,stick,iron);
+		addDebris(Item.getItemFromBlock(Blocks.PISTON),7f,cobble,cobble,cobble,cobble,redstone,planks,planks,planks,iron);
+		addDebris(Item.getItemFromBlock(Blocks.STICKY_PISTON),7f,cobble,cobble,cobble,cobble,redstone,planks,planks,planks,iron,Items.SLIME_BALL);
 		addDebris(Items.CAULDRON,10f,iron,iron,iron,iron,iron,iron,iron);
 		addDebris(Item.getItemFromBlock(Blocks.NOTEBLOCK),6f,planks,planks,planks,planks,planks,planks,planks,planks,redstone);
 		addDebris(Item.getItemFromBlock(Blocks.BOOKSHELF),4f,planks,planks,planks,planks,planks,planks,Items.BOOK,Items.BOOK,Items.BOOK);

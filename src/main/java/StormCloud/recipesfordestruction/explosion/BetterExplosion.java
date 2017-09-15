@@ -138,9 +138,9 @@ public class BetterExplosion{
 		float distance = (float)Math.sqrt(blockpos.distanceSqToCenter(this.exploX, this.exploY, this.exploZ));
 		
 		//ItemStack itemblock = block.getPickBlock(block.getDefaultState(), null, this.worldObj, blockpos, null);
-		Item itemblock = block.getItemDropped(block.getDefaultState(), exploRNG, 0);
+		Item itemblock = block.getItemDropped(block.getExtendedState(worldObj.getBlockState(blockpos),worldObj,blockpos), exploRNG, 0);
 		
-		float power = (size*4f)/distance;
+		float power = ((size*4f)/distance)+exploRNG.nextFloat();
 		
 		ArrayList<Item> start = new ArrayList<Item>();
 		ArrayList<Item> drops = new ArrayList<Item>();
@@ -149,10 +149,11 @@ public class BetterExplosion{
 		int i;
 		System.out.println("Begining breakdown");
 		while(start.size() > 0) {
+			
 			i = exploRNG.nextInt(start.size());
 			Item item = start.get(i);
 			Debris debby = ExplosionRecipeHandler.getDebris(start.get(i));
-			if(debby == null) {System.out.println("Debby is NULL PANIC!!");}
+			
 			if(debby != null && power > debby.resistance) {
 				for(Item item2: debby.result) {start.add(item2);}
 				start.remove(item);
