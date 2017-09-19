@@ -14,7 +14,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
@@ -158,10 +157,23 @@ public class BetterExplosion{
 			Debris debby = ExplosionRecipeHandler.getDebris(itemstack.getItem());
 			
 			if(debby != null && power > debby.resistance) {
-				for(Item item2: debby.result) {stacksIn.add(new ItemStack(item2,1));}
+				for(ItemStack item2: debby.getResults(itemstack)) {
+					if(item2.stackSize > 1) {
+						for(int p=0; p < item2.stackSize;p++) {
+							ItemStack item3 = item2.copy();
+							item3.stackSize = 1;
+							stacksIn.add(item3);
+						}
+					}else {
+						stacksIn.add(item2);
+					}
+				}
+				
 				stacksIn.remove(itemstack);
 				power -= debby.resistance;
+				
 			}else{
+				
 				drops.add(itemstack);
 				stacksIn.remove(itemstack);
 			} 

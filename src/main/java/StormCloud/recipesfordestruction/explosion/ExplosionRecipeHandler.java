@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 
 public class ExplosionRecipeHandler {
@@ -13,15 +14,39 @@ public class ExplosionRecipeHandler {
 	
 	
 	public static class Debris{
+		private final int[] metas;
 		public final float resistance;
-		public final Item[] result;
-		public Debris(float c, Item[] r) {
+		private final ItemStack[][] result;
+		public Debris(float c, int[] i,ItemStack[]... r) {
 			this.resistance = c;
 			this.result = r;
+			this.metas = i;
+			
+		}
+		public Debris(float c, ItemStack... r) {
+			this(c, null,r);
+		}
+		
+		public ItemStack[] getResults(ItemStack stack) {
+			if (metas == null) {
+				return result[0];
+			}else{
+				int m = stack.getMetadata();
+				for(int i = 0; i < metas.length;i++) {
+					if (metas[i]==m) {
+						return result[i];
+					}
+				}
+			}
+			System.out.println("Unknown meta, returning default");
+			return result[0];
+			
+			
 		}
 	}
 	
-
+	
+	
 	private static HashMap<Item,Debris> explosionDebrisMap;
 	private static HashMap<Block,RecipeType> explosionRecipeMap2;
 	
@@ -61,9 +86,39 @@ public class ExplosionRecipeHandler {
 	 * 
 	 * @param item; inital item or itemblock 
 	 * @param resistance; explosion resistance, for itemblocks, suggest using regular explosion resistance 
+	 * @param metas[]; a collection of meta values
+	 * @param result[]; collection of collections of items stacks, each set must match to a meta value given in the same order
+	 * 
+	 * ie
+	 * metas[] = {meta1,meta2,meta3}
+	 * result[][]= {{Itemstacks for meta1},{Itemstack for meta2},{Itemstacks for meta3}}
+	 * 
+	 * 
+	 */
+	public static void addExplosionResult(Item item, float resistance,int[] metas, ItemStack[]... result) {
+		//null check
+		if (item==null) {System.out.println("Can't Add Item! Item Null!");return;}
+		//check if there's already a recipe
+		if(explosionDebrisMap.containsKey(item)){//tell somebody
+			System.out.println("Explosion Debris Recipe for " + item.getUnlocalizedName() + " already exists!");
+		}else{
+			//normal behaviour
+			explosionDebrisMap.put(item, new Debris(resistance,metas, result));
+			//we did it!! wooo
+			System.out.println("Explosion Debris Recipe for " + item.getUnlocalizedName() +" added successfully.");
+		}
+		
+	}
+	/**
+	 * Adds the Result for an item, which is used when something is blown up with advanced handling
+	 * It will go down the results recursively up to a limit based on the distance from epicenter,
+	 * strength of the explosion, and explosion resistance you set here.
+	 * 
+	 * @param item; inital item or itemblock 
+	 * @param resistance; explosion resistance, for itemblocks, suggest using regular explosion resistance 
 	 * @param result[]; collection of items, that this item will break into, don't use too many.
 	 */
-	public static void addExplosionResult(Item item, float resistance, Item... result) {
+	public static void addExplosionResult(Item item, float resistance, ItemStack... result) {
 		//null check
 		if (item==null) {System.out.println("Can't Add Item! Item Null!");return;}
 		//check if there's already a recipe
@@ -77,6 +132,7 @@ public class ExplosionRecipeHandler {
 		}
 		
 	}
+	
 	/**
 	 * Returns the Recipe type, or UNHANDLED if none found
 	 * (a block may also be registered as UNHANDLED to enforce vanilla handling)
