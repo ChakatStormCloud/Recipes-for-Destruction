@@ -14,10 +14,10 @@ public class ExplosionRecipeHandler {
 	
 	
 	public static class Debris{
-		private final int[] metas;
+		private final int[][] metas;
 		public final float resistance;
 		private final ItemStack[][] result;
-		public Debris(float c, int[] i,ItemStack[]... r) {
+		public Debris(float c, int[][] i,ItemStack[]... r) {
 			this.resistance = c;
 			this.result = r;
 			this.metas = i;
@@ -33,8 +33,10 @@ public class ExplosionRecipeHandler {
 			}else{
 				int m = stack.getMetadata();
 				for(int i = 0; i < metas.length;i++) {
-					if (metas[i]==m) {
-						return result[i];
+					for(int j=0;j<metas[i].length;j++) {
+						if (metas[i][j]==m) {
+							return result[i];
+						}
 					}
 				}
 			}
@@ -95,7 +97,7 @@ public class ExplosionRecipeHandler {
 	 * 
 	 * 
 	 */
-	public static void addExplosionResult(Item item, float resistance,int[] metas, ItemStack[]... result) {
+	public static void addExplosionResult(Item item, float resistance,int[][] metas, ItemStack[]... result) {
 		//null check
 		if (item==null) {System.out.println("Can't Add Item! Item Null!");return;}
 		//check if there's already a recipe
