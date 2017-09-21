@@ -137,13 +137,11 @@ public class BetterExplosion{
 	private void betterSmashBlock(Block block, BlockPos blockpos) {
 		float distance = (float)Math.sqrt(blockpos.distanceSqToCenter(this.exploX, this.exploY, this.exploZ));
 		
-		//Item itemblock = block.getItemDropped(block.getExtendedState(worldObj.getBlockState(blockpos),worldObj,blockpos), exploRNG, 0);
 		ItemStack blockstack = block.getPickBlock(block.getExtendedState(worldObj.getBlockState(blockpos),worldObj, blockpos),
 					null, worldObj, blockpos,
 					this.explosion.getExplosivePlacedBy() instanceof EntityPlayer ? (EntityPlayer)this.explosion.getExplosivePlacedBy() : null  );
 		float power = ((size*4f)/distance)+exploRNG.nextFloat();
 		
-		//ArrayList<Item> start = new ArrayList<Item>();
 		ArrayList<ItemStack> stacksIn = new ArrayList<ItemStack>();
 		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
 		stacksIn.add(blockstack);

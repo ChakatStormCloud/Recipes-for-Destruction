@@ -13,6 +13,7 @@ eclipse/
 .gradle/
 output/
 .cache
+*.launch
 *.iml
 *.ipr
 *.iws
