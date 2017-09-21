@@ -23,6 +23,7 @@ public class Vanilla {
 		addDebris(Blocks.CHEST, 6f, planks,planks,planks,planks,planks,planks,planks,planks);
 		addDebris(Blocks.CRAFTING_TABLE, 4f, planks,planks,planks,planks);
 		addDebris(Blocks.FURNACE, 9f, cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble);
+		addDebris(Blocks.LIT_FURNACE, 9f, cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble);
 		addDebris(Blocks.PLANKS, 3f, new ItemStack(Items.STICK,2));
 		addDebris(Blocks.COBBLESTONE, 14f, new ItemStack(Item.getItemFromBlock(Blocks.GRAVEL)));
 		addDebris(Blocks.BED,4f,planks,planks,planks,wool,wool,wool);
@@ -38,6 +39,11 @@ public class Vanilla {
 		addDebris(Blocks.NOTEBLOCK,6f,planks,planks,planks,planks,planks,planks,planks,planks,redstone);
 		addDebris(Blocks.BOOKSHELF,4f,planks,planks,planks,planks,planks,planks,new ItemStack(Items.BOOK, 3));
 		addDebris(Items.BOOK,2f,new ItemStack(Items.PAPER,3));
+		
+		addDebris(Blocks.SANDSTONE,6f,new ItemStack(Blocks.SAND,4,0));
+		addDebris(Blocks.SANDSTONE_STAIRS,6f,new ItemStack(Blocks.SANDSTONE,1,0));
+		addDebris(Blocks.RED_SANDSTONE,6f,new ItemStack(Blocks.SAND,4,1));
+		addDebris(Blocks.RED_SANDSTONE_STAIRS,6f,new ItemStack(Blocks.RED_SANDSTONE,1,0));
 		
 		addDebris(Blocks.OAK_DOOR,4f, new ItemStack(Blocks.PLANKS,2,0));
 		addDebris(Blocks.OAK_FENCE,4f, new ItemStack(Blocks.PLANKS,1,0),stick);
@@ -76,6 +82,28 @@ public class Vanilla {
 		addMetaDebris(Item.getItemFromBlock(Blocks.LOG2),6f,new int[][]{{0,4,8,12},{1,5,9,13}},
 				new ItemStack[][]{{new ItemStack(Blocks.PLANKS,4,4)},{new ItemStack(Blocks.PLANKS,4,5)}});
 		
+		addMetaDebris(Item.getItemFromBlock(Blocks.STONE_SLAB),6f,new int[][]{{0,5,8,13},{1,9},{2,10},{3,11},{4,12},{6,14},{7,15}},
+				new ItemStack[][]{{new ItemStack(Blocks.STONE_SLAB,1,3)},{new ItemStack(Blocks.SAND,2,0)},{stick},
+				{new ItemStack(Blocks.GRAVEL,1,0)},{new ItemStack(Items.BRICK,2,0)},{new ItemStack(Items.NETHERBRICK,2,0)},
+				{new ItemStack(Items.QUARTZ,2,0)}});
+		
+		addDebris(Item.getItemFromBlock(Blocks.STONE_SLAB2),6f,new ItemStack(Blocks.SAND,2,1));
+		
+		addMetaDebris(Item.getItemFromBlock(Blocks.DOUBLE_STONE_SLAB),8f,new int[][]{{0,5,8},{1,9},{2},{3},{4},{6},{7,15}},
+				new ItemStack[][]{{cobble},{new ItemStack(Blocks.SAND,4,0)},{planks},
+				{new ItemStack(Blocks.GRAVEL,1,0)},{new ItemStack(Items.BRICK,4,0)},
+				{new ItemStack(Items.NETHERBRICK,4,0)},{new ItemStack(Items.QUARTZ,4,0)}});
+		addDebris(Item.getItemFromBlock(Blocks.DOUBLE_STONE_SLAB2),8f,new ItemStack(Blocks.SAND,4,1));
+		
+		addRecipe(Blocks.STONE_SLAB,RecipeType.BREAK);
+		addRecipe(Blocks.STONE_SLAB2,RecipeType.BREAK);
+		addRecipe(Blocks.DOUBLE_STONE_SLAB,RecipeType.BREAK);
+		addRecipe(Blocks.DOUBLE_STONE_SLAB2,RecipeType.BREAK);
+		
+		addRecipe(Blocks.SANDSTONE,RecipeType.BREAK);
+		addRecipe(Blocks.SANDSTONE_STAIRS,RecipeType.BREAK);
+		addRecipe(Blocks.RED_SANDSTONE,RecipeType.BREAK);
+		addRecipe(Blocks.RED_SANDSTONE_STAIRS,RecipeType.BREAK);
 		
 		addRecipe(Blocks.OAK_DOOR,RecipeType.BREAK);
 		addRecipe(Blocks.OAK_FENCE,RecipeType.BREAK);
@@ -106,8 +134,8 @@ public class Vanilla {
 		addRecipe(Blocks.DARK_OAK_FENCE,RecipeType.BREAK);
 		addRecipe(Blocks.DARK_OAK_FENCE_GATE,RecipeType.BREAK);
 		addRecipe(Blocks.DARK_OAK_STAIRS,RecipeType.BREAK);
-				
-				
+		
+		
 		addRecipe(Blocks.BOOKSHELF,RecipeType.BREAK);
 		addRecipe(Blocks.NOTEBLOCK,RecipeType.BREAK);
 		addRecipe(Blocks.CAULDRON,RecipeType.BREAK);
@@ -122,6 +150,7 @@ public class Vanilla {
 		addRecipe(Blocks.CHEST,RecipeType.BREAK);
 		addRecipe(Blocks.CRAFTING_TABLE,RecipeType.BREAK);
 		addRecipe(Blocks.FURNACE, RecipeType.BREAK);
+		addRecipe(Blocks.LIT_FURNACE, RecipeType.BREAK);
 		addRecipe(Blocks.COBBLESTONE, RecipeType.BREAK);
 		addRecipe(Blocks.PLANKS, RecipeType.BREAK);
 		addRecipe(Blocks.SAND,RecipeType.DROP);
