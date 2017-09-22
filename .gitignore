@@ -33,3 +33,4 @@ Paulscode SoundSystem CodecIBXM License.txt
 Conservation of Mass Mod_Client.launch
 Conservation of Mass Mod_Server.launch
 forge*changelog.txt
+*.launch

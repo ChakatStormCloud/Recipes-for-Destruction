@@ -92,27 +92,27 @@ public class BetterExplosion{
 				
 				
 				//My Block drop
-				if (iblockstate.getMaterial() != Material.AIR && block.canDropFromExplosion(explosion)){
+				if (iblockstate.getMaterial() != Material.AIR){
 					//System.out.println(block.getUnlocalizedName());
 					
-					
-					switch(ExplosionRecipeHandler.getHandledType(block)){
-					
-					case DROP: //=================100% drop chance====================//
-						block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F, 0);
+					if (block.canDropFromExplosion(this.explosion)) {
+						switch(ExplosionRecipeHandler.getHandledType(block)){
 						
-						break;
-						
-					case BREAK://==================chance of breaking=================//
-						
-						betterSmashBlock(block,blockpos);
-						break;
-						
-					case UNHANDLED: //===============vanilla===================//
-						block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F / this.size, 0);
-						break;
-						
-						
+						case DROP: //=================100% drop chance====================//
+							block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F, 0);
+							
+							break;
+							
+						case BREAK://==================chance of breaking=================//
+							
+							betterSmashBlock(block,blockpos);
+							break;
+							
+						case UNHANDLED: //===============vanilla===================//
+							block.dropBlockAsItemWithChance(this.worldObj, blockpos, this.worldObj.getBlockState(blockpos), 1.0F / this.size, 0);
+							break;
+							
+						}
 					}
 					
 					block.onBlockExploded(this.worldObj, blockpos, explosion);
