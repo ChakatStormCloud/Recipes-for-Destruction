@@ -40,6 +40,9 @@ public class Vanilla {
 		addDebris(Blocks.BOOKSHELF,4f,planks,planks,planks,planks,planks,planks,new ItemStack(Items.BOOK, 3));
 		addDebris(Items.BOOK,2f,new ItemStack(Items.PAPER,3));
 		
+		addDebris(Blocks.BRICK_BLOCK,8f,new ItemStack(Items.BRICK,4,0));
+		addDebris(Blocks.BRICK_STAIRS,8f,new ItemStack(Items.BRICK,6,0));
+		
 		addDebris(Blocks.SANDSTONE,6f,new ItemStack(Blocks.SAND,4,0));
 		addDebris(Blocks.SANDSTONE_STAIRS,6f,new ItemStack(Blocks.SANDSTONE,1,0));
 		addDebris(Blocks.RED_SANDSTONE,6f,new ItemStack(Blocks.SAND,4,1));
@@ -103,6 +106,8 @@ public class Vanilla {
 		
 		
 		//========================Add Recipes=======================//
+		addRecipe(Blocks.BRICK_BLOCK,RecipeType.BREAK);
+		addRecipe(Blocks.BRICK_STAIRS,RecipeType.BREAK);
 		
 		addRecipe(Blocks.STONE_SLAB,RecipeType.BREAK);
 		addRecipe(Blocks.STONE_SLAB2,RecipeType.BREAK);
