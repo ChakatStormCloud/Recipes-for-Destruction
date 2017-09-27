@@ -26,7 +26,7 @@ public class Vanilla {
 		addDebris(Blocks.FURNACE, 9f, cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble);
 		addDebris(Blocks.LIT_FURNACE, 9f, cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble);
 		addDebris(Blocks.PLANKS, 3f, new ItemStack(Items.STICK,2));
-		addDebris(Blocks.COBBLESTONE, 14f, new ItemStack(Item.getItemFromBlock(Blocks.GRAVEL)));
+		addDebris(Blocks.COBBLESTONE, 14f, new ItemStack(Blocks.GRAVEL,1,0));
 		addDebris(Blocks.BED,4f,planks,planks,planks,wool,wool,wool);
 		addDebris(Blocks.LEAVES,0.5f,stick);
 		addDebris(Blocks.LEAVES2,0.5f,stick);
@@ -39,9 +39,13 @@ public class Vanilla {
 		addDebris(Blocks.NOTEBLOCK,6f,planks,planks,planks,planks,planks,planks,planks,planks,redstone);
 		addDebris(Blocks.BOOKSHELF,4f,planks,planks,planks,planks,planks,planks,new ItemStack(Items.BOOK, 3));
 		addDebris(Items.BOOK,2f,new ItemStack(Items.PAPER,3));
+		addDebris(Blocks.JUKEBOX,6f,new ItemStack(Blocks.PLANKS,8,0),new ItemStack(Items.DIAMOND,1,0));
 		
 		addDebris(Blocks.BRICK_BLOCK,8f,new ItemStack(Items.BRICK,4,0));
 		addDebris(Blocks.BRICK_STAIRS,8f,new ItemStack(Items.BRICK,6,0));
+		addDebris(Blocks.NETHER_BRICK,8f,new ItemStack(Items.NETHERBRICK,4,0));
+		addDebris(Blocks.NETHER_BRICK_FENCE,6f,new ItemStack(Items.NETHERBRICK,4,0));
+		addDebris(Blocks.NETHER_BRICK_STAIRS,6f,new ItemStack(Items.NETHERBRICK,6,0));
 		
 		addDebris(Blocks.SANDSTONE,6f,new ItemStack(Blocks.SAND,4,0));
 		addDebris(Blocks.SANDSTONE_STAIRS,6f,new ItemStack(Blocks.SANDSTONE,1,0));
@@ -83,6 +87,20 @@ public class Vanilla {
 		addDebris(Blocks.DETECTOR_RAIL,5f,iron,new ItemStack(Blocks.STONE,1,0));
 		addDebris(Blocks.GOLDEN_RAIL,5f,new ItemStack(Items.GOLD_INGOT,1,0),stick);
 		
+		addDebris(Blocks.HOPPER,14f,new ItemStack(Items.IRON_INGOT,5,0),new ItemStack(Blocks.CHEST,1,0));
+		
+		addDebris(Blocks.LADDER,4f,new ItemStack(Items.STICK,2));
+		addDebris(Items.SIGN,4f,new ItemStack(Blocks.PLANKS,2));
+		addDebris(Blocks.LEVER,4f, stick, cobble);
+		addDebris(Blocks.STONE_PRESSURE_PLATE,6f,new ItemStack(Blocks.STONE,2));
+		addDebris(Blocks.WOODEN_PRESSURE_PLATE,4f,new ItemStack(Blocks.PLANKS,2));
+		addDebris(Blocks.STONE_BUTTON,5f,new ItemStack(Blocks.STONE,1));
+		addDebris(Blocks.WOODEN_BUTTON,3f,new ItemStack(Blocks.PLANKS,1));
+		addDebris(Blocks.REDSTONE_TORCH,2f,stick,new ItemStack(Items.REDSTONE,1));
+		addDebris(Blocks.UNLIT_REDSTONE_TORCH,2f,stick,new ItemStack(Items.REDSTONE,1));
+		
+		addDebris(Blocks.STONE_BRICK_STAIRS,7f, new ItemStack(Blocks.STONE_STAIRS,1,0));
+		addDebris(Blocks.STONE_STAIRS,14f,new ItemStack(Blocks.GRAVEL,1,0));
 		
 		addMetaDebris(Item.getItemFromBlock(Blocks.STONEBRICK),8f,new int[][]{{0,3},{1},{2}},
 				new ItemStack[][]{{new ItemStack(Blocks.STONEBRICK,1,2)},{new ItemStack(Blocks.MOSSY_COBBLESTONE,1)},{new ItemStack(Blocks.COBBLESTONE,1)}});
@@ -91,28 +109,59 @@ public class Vanilla {
 		addMetaDebris(Item.getItemFromBlock(Blocks.LOG2),6f,new int[][]{{0,4,8,12},{1,5,9,13}},
 				new ItemStack[][]{{new ItemStack(Blocks.PLANKS,4,4)},{new ItemStack(Blocks.PLANKS,4,5)}});
 		
-		addMetaDebris(Item.getItemFromBlock(Blocks.STONE_SLAB),6f,new int[][]{{0,5,8,13},{1,9},{2,10},{3,11},{4,12},{6,14},{7,15}},
+		addMetaDebris(Item.getItemFromBlock(Blocks.STONE_SLAB),9f,new int[][]{{0,5,8,13},{1,9},{2,10},{3,11},{4,12},{6,14},{7,15}},
 				new ItemStack[][]{{new ItemStack(Blocks.STONE_SLAB,1,3)},{new ItemStack(Blocks.SAND,2,0)},{stick},
 				{new ItemStack(Blocks.GRAVEL,1,0)},{new ItemStack(Items.BRICK,2,0)},{new ItemStack(Items.NETHERBRICK,2,0)},
 				{new ItemStack(Items.QUARTZ,2,0)}});
 		
 		addDebris(Item.getItemFromBlock(Blocks.STONE_SLAB2),6f,new ItemStack(Blocks.SAND,2,1));
 		
-		addMetaDebris(Item.getItemFromBlock(Blocks.DOUBLE_STONE_SLAB),8f,new int[][]{{0,5,8},{1,9},{2},{3},{4},{6},{7,15}},
+		addMetaDebris(Item.getItemFromBlock(Blocks.DOUBLE_STONE_SLAB),10f,new int[][]{{0,5,8},{1,9},{2},{3},{4},{6},{7,15}},
 				new ItemStack[][]{{cobble},{new ItemStack(Blocks.SAND,4,0)},{planks},
 				{new ItemStack(Blocks.GRAVEL,1,0)},{new ItemStack(Items.BRICK,4,0)},
 				{new ItemStack(Items.NETHERBRICK,4,0)},{new ItemStack(Items.QUARTZ,4,0)}});
 		addDebris(Item.getItemFromBlock(Blocks.DOUBLE_STONE_SLAB2),8f,new ItemStack(Blocks.SAND,4,1));
 		
 		
+		
+		
 		//========================Add Recipes=======================//
+		//Type Drop
+		addRecipe(Blocks.FARMLAND,RecipeType.DROP);
+		addRecipe(Blocks.GRASS_PATH,RecipeType.DROP);
+		addRecipe(Blocks.DIRT,RecipeType.DROP);
+		addRecipe(Blocks.GRASS,RecipeType.DROP);
+		addRecipe(Blocks.SAND,RecipeType.DROP);
+		addRecipe(Blocks.GRAVEL,RecipeType.DROP);
+		addRecipe(Blocks.NETHERRACK,RecipeType.DROP);
+		addRecipe(Blocks.SOUL_SAND,RecipeType.DROP);
+		
+		
+		//Type Break
+		addRecipe(Blocks.LADDER,RecipeType.BREAK);
+		addRecipe(Blocks.STANDING_SIGN,RecipeType.BREAK);
+		addRecipe(Blocks.WALL_SIGN,RecipeType.BREAK);
+		
+		addRecipe(Blocks.LEVER,RecipeType.BREAK);
+		addRecipe(Blocks.STONE_PRESSURE_PLATE,RecipeType.BREAK);
+		addRecipe(Blocks.WOODEN_PRESSURE_PLATE,RecipeType.BREAK);
+		addRecipe(Blocks.STONE_BUTTON,RecipeType.BREAK);
+		addRecipe(Blocks.WOODEN_BUTTON,RecipeType.BREAK);
+		addRecipe(Blocks.REDSTONE_TORCH,RecipeType.BREAK);
+		addRecipe(Blocks.UNLIT_REDSTONE_TORCH,RecipeType.BREAK);
+		
 		addRecipe(Blocks.BRICK_BLOCK,RecipeType.BREAK);
 		addRecipe(Blocks.BRICK_STAIRS,RecipeType.BREAK);
+		
+		addRecipe(Blocks.NETHER_BRICK,RecipeType.BREAK);
+		addRecipe(Blocks.NETHER_BRICK_FENCE,RecipeType.BREAK);
+		addRecipe(Blocks.NETHER_BRICK_STAIRS,RecipeType.BREAK);
 		
 		addRecipe(Blocks.STONE_SLAB,RecipeType.BREAK);
 		addRecipe(Blocks.STONE_SLAB2,RecipeType.BREAK);
 		addRecipe(Blocks.DOUBLE_STONE_SLAB,RecipeType.BREAK);
 		addRecipe(Blocks.DOUBLE_STONE_SLAB2,RecipeType.BREAK);
+		addRecipe(Blocks.STONE_BRICK_STAIRS,RecipeType.BREAK);
 		
 		addRecipe(Blocks.SANDSTONE,RecipeType.BREAK);
 		addRecipe(Blocks.SANDSTONE_STAIRS,RecipeType.BREAK);
@@ -156,13 +205,11 @@ public class Vanilla {
 		
 		addRecipe(Blocks.BOOKSHELF,RecipeType.BREAK);
 		addRecipe(Blocks.NOTEBLOCK,RecipeType.BREAK);
+		addRecipe(Blocks.JUKEBOX,RecipeType.BREAK);
 		addRecipe(Blocks.CAULDRON,RecipeType.BREAK);
 		addRecipe(Blocks.STICKY_PISTON,RecipeType.BREAK);
 		addRecipe(Blocks.PISTON,RecipeType.BREAK);
-		addRecipe(Blocks.FARMLAND,RecipeType.DROP);
-		addRecipe(Blocks.GRASS_PATH,RecipeType.DROP);
-		addRecipe(Blocks.DIRT,RecipeType.DROP);
-		addRecipe(Blocks.GRASS,RecipeType.DROP);
+		
 		addRecipe(Blocks.STONE,RecipeType.BREAK);
 		addRecipe(Blocks.CHEST,RecipeType.BREAK);
 		addRecipe(Blocks.CRAFTING_TABLE,RecipeType.BREAK);
@@ -170,7 +217,6 @@ public class Vanilla {
 		addRecipe(Blocks.LIT_FURNACE, RecipeType.BREAK);
 		addRecipe(Blocks.COBBLESTONE, RecipeType.BREAK);
 		addRecipe(Blocks.PLANKS, RecipeType.BREAK);
-		addRecipe(Blocks.SAND,RecipeType.DROP);
 		addRecipe(Blocks.LOG,RecipeType.BREAK);
 		addRecipe(Blocks.LOG2,RecipeType.BREAK);
 		addRecipe(Blocks.BED,RecipeType.BREAK);
@@ -178,6 +224,8 @@ public class Vanilla {
 		addRecipe(Blocks.LEAVES2,RecipeType.BREAK);
 		addRecipe(Blocks.DROPPER,RecipeType.BREAK);
 		addRecipe(Blocks.DISPENSER,RecipeType.BREAK);
+		addRecipe(Blocks.HOPPER,RecipeType.BREAK);
+		
 		addRecipe(Blocks.STONEBRICK,RecipeType.BREAK);
 		
 	}
@@ -192,10 +240,8 @@ public class Vanilla {
 		addDebris(Item.getItemFromBlock(b),f,items);
 	}
 	
-	private static void addMetaDebris(Item i, float f, int[][] metas,ItemStack[]... items) {
+	private static void addMetaDebris(Item i, float f, int[][] metas,ItemStack[][] items) {
 		ExplosionRecipeHandler.addExplosionResult(i,f,metas,items);
 	}
-	
-	
 	
 }
