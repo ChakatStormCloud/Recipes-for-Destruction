@@ -20,6 +20,17 @@ public class Vanilla {
 		ItemStack iron = new ItemStack(Items.IRON_INGOT,1);
 		
 		//========================Add Debris=======================//
+		addDebris(Items.BLAZE_ROD,2f,new ItemStack(Items.BLAZE_POWDER,2));
+		
+		addDebris(Blocks.GOLD_BLOCK,10f,new ItemStack(Items.GOLD_INGOT,9));
+		addDebris(Blocks.IRON_BLOCK,10f,new ItemStack(Items.IRON_INGOT,9));
+		addDebris(Blocks.LAPIS_BLOCK,10f,new ItemStack(Items.DYE,9,4));
+		addDebris(Blocks.REDSTONE_BLOCK,10f,new ItemStack(Items.REDSTONE,9));
+		addDebris(Blocks.EMERALD_BLOCK,10f,new ItemStack(Items.EMERALD,9));
+		addDebris(Blocks.DIAMOND_BLOCK,10f,new ItemStack(Items.DIAMOND,9));
+		addDebris(Blocks.COAL_BLOCK,10f,new ItemStack(Items.COAL,9));
+		addDebris(Blocks.QUARTZ_BLOCK,10f,new ItemStack(Items.QUARTZ,4));
+		addDebris(Blocks.QUARTZ_STAIRS,10f,new ItemStack(Items.QUARTZ,6));
 		
 		addDebris(Blocks.CHEST, 6f, planks,planks,planks,planks,planks,planks,planks,planks);
 		addDebris(Blocks.CRAFTING_TABLE, 4f, planks,planks,planks,planks);
@@ -88,6 +99,7 @@ public class Vanilla {
 		addDebris(Blocks.GOLDEN_RAIL,5f,new ItemStack(Items.GOLD_INGOT,1,0),stick);
 		
 		addDebris(Blocks.HOPPER,14f,new ItemStack(Items.IRON_INGOT,5,0),new ItemStack(Blocks.CHEST,1,0));
+		addDebris(Items.BREWING_STAND,5f,new ItemStack(Items.BLAZE_ROD,1),new ItemStack(Blocks.COBBLESTONE,3));
 		
 		addDebris(Blocks.LADDER,4f,new ItemStack(Items.STICK,2));
 		addDebris(Items.SIGN,4f,new ItemStack(Blocks.PLANKS,2));
@@ -97,7 +109,12 @@ public class Vanilla {
 		addDebris(Blocks.STONE_BUTTON,5f,new ItemStack(Blocks.STONE,1));
 		addDebris(Blocks.WOODEN_BUTTON,3f,new ItemStack(Blocks.PLANKS,1));
 		addDebris(Blocks.REDSTONE_TORCH,2f,stick,new ItemStack(Items.REDSTONE,1));
-		addDebris(Blocks.UNLIT_REDSTONE_TORCH,2f,stick,new ItemStack(Items.REDSTONE,1));
+		addDebris(Blocks.UNLIT_REDSTONE_TORCH,2f,stick,new ItemStack(Items.REDSTONE,1));//redundant, probably
+		addDebris(Blocks.POWERED_REPEATER,4f,new ItemStack(Blocks.REDSTONE_TORCH,2),new ItemStack(Blocks.STONE,3),redstone);
+		addDebris(Blocks.UNPOWERED_REPEATER,4f,new ItemStack(Blocks.REDSTONE_TORCH,2),new ItemStack(Blocks.STONE,3),redstone);//again, probably redundant
+		addDebris(Blocks.POWERED_COMPARATOR,4f,new ItemStack(Blocks.REDSTONE_TORCH,3),new ItemStack(Blocks.STONE,3),new ItemStack(Items.QUARTZ,1));
+		addDebris(Blocks.UNPOWERED_COMPARATOR,4f,new ItemStack(Blocks.REDSTONE_TORCH,3),new ItemStack(Blocks.STONE,3),new ItemStack(Items.QUARTZ,1));//again, probably redundant
+		
 		
 		addDebris(Blocks.STONE_BRICK_STAIRS,7f, new ItemStack(Blocks.STONE_STAIRS,1,0));
 		addDebris(Blocks.STONE_STAIRS,14f,new ItemStack(Blocks.GRAVEL,1,0));
@@ -135,13 +152,68 @@ public class Vanilla {
 		addRecipe(Blocks.GRAVEL,RecipeType.DROP);
 		addRecipe(Blocks.NETHERRACK,RecipeType.DROP);
 		addRecipe(Blocks.SOUL_SAND,RecipeType.DROP);
+		addRecipe(Blocks.CLAY,RecipeType.DROP);
+		addRecipe(Blocks.TRIPWIRE,RecipeType.DROP);
+		
+		//Drop for now, TODO: add custom items for dropping
+		addRecipe(Blocks.WOOL,RecipeType.DROP);
+		addRecipe(Blocks.IRON_ORE,RecipeType.DROP);
+		addRecipe(Blocks.GOLD_ORE,RecipeType.DROP);
+		addRecipe(Blocks.COAL_ORE,RecipeType.DROP);
+		addRecipe(Blocks.LAPIS_ORE,RecipeType.DROP);
+		addRecipe(Blocks.EMERALD_ORE,RecipeType.DROP);
+		addRecipe(Blocks.REDSTONE_ORE,RecipeType.DROP);
+		addRecipe(Blocks.LIT_REDSTONE_ORE,RecipeType.DROP);
+		addRecipe(Blocks.QUARTZ_ORE,RecipeType.DROP);
+		addRecipe(Blocks.DIAMOND_ORE,RecipeType.DROP);
+		
+		//unhandled, TODO: find something
+		addRecipe(Blocks.WHEAT,RecipeType.UNHANDLED);
+		addRecipe(Blocks.MELON_BLOCK,RecipeType.UNHANDLED);
+		addRecipe(Blocks.MELON_STEM,RecipeType.UNHANDLED);
+		addRecipe(Blocks.PUMPKIN,RecipeType.UNHANDLED);
+		addRecipe(Blocks.LIT_PUMPKIN,RecipeType.UNHANDLED);
+		addRecipe(Blocks.PUMPKIN_STEM,RecipeType.UNHANDLED);
+		addRecipe(Blocks.VINE,RecipeType.UNHANDLED);
+		addRecipe(Blocks.BEETROOTS,RecipeType.UNHANDLED);
+		addRecipe(Blocks.CARROTS,RecipeType.UNHANDLED);
+		addRecipe(Blocks.POTATOES,RecipeType.UNHANDLED);
+		addRecipe(Blocks.COCOA,RecipeType.UNHANDLED);
+		addRecipe(Blocks.NETHER_WART,RecipeType.UNHANDLED);
+		addRecipe(Blocks.CACTUS,RecipeType.UNHANDLED);
+		addRecipe(Blocks.REEDS,RecipeType.UNHANDLED);
+		addRecipe(Blocks.YELLOW_FLOWER,RecipeType.UNHANDLED);
+		addRecipe(Blocks.RED_FLOWER,RecipeType.UNHANDLED);
+		addRecipe(Blocks.BROWN_MUSHROOM,RecipeType.UNHANDLED);
+		addRecipe(Blocks.RED_MUSHROOM,RecipeType.UNHANDLED);
+		
+		//intentionally unhandled, I might do something with this, but probably not.
+		addRecipe(Blocks.PORTAL,RecipeType.UNHANDLED);
+		addRecipe(Blocks.CAKE,RecipeType.UNHANDLED);
+		addRecipe(Blocks.ICE,RecipeType.UNHANDLED);
+		addRecipe(Blocks.SNOW,RecipeType.UNHANDLED);
+		addRecipe(Blocks.SNOW_LAYER,RecipeType.UNHANDLED);
+		addRecipe(Blocks.TNT,RecipeType.UNHANDLED);
 		
 		
-		//Type Break
+		//========Type Break
 		addRecipe(Blocks.LADDER,RecipeType.BREAK);
 		addRecipe(Blocks.STANDING_SIGN,RecipeType.BREAK);
 		addRecipe(Blocks.WALL_SIGN,RecipeType.BREAK);
+		addRecipe(Blocks.BREWING_STAND,RecipeType.BREAK);
 		
+		//matrialblocks
+		addRecipe(Blocks.GOLD_BLOCK,RecipeType.BREAK);
+		addRecipe(Blocks.IRON_BLOCK,RecipeType.BREAK);
+		addRecipe(Blocks.LAPIS_BLOCK,RecipeType.BREAK);
+		addRecipe(Blocks.REDSTONE_BLOCK,RecipeType.BREAK);
+		addRecipe(Blocks.EMERALD_BLOCK,RecipeType.BREAK);
+		addRecipe(Blocks.DIAMOND_BLOCK,RecipeType.BREAK);
+		addRecipe(Blocks.COAL_BLOCK,RecipeType.BREAK);
+		addRecipe(Blocks.QUARTZ_BLOCK,RecipeType.BREAK);
+		addRecipe(Blocks.QUARTZ_STAIRS,RecipeType.BREAK);
+		
+		//redstone
 		addRecipe(Blocks.LEVER,RecipeType.BREAK);
 		addRecipe(Blocks.STONE_PRESSURE_PLATE,RecipeType.BREAK);
 		addRecipe(Blocks.WOODEN_PRESSURE_PLATE,RecipeType.BREAK);
@@ -149,7 +221,12 @@ public class Vanilla {
 		addRecipe(Blocks.WOODEN_BUTTON,RecipeType.BREAK);
 		addRecipe(Blocks.REDSTONE_TORCH,RecipeType.BREAK);
 		addRecipe(Blocks.UNLIT_REDSTONE_TORCH,RecipeType.BREAK);
+		addRecipe(Blocks.UNPOWERED_REPEATER,RecipeType.BREAK);
+		addRecipe(Blocks.POWERED_REPEATER,RecipeType.BREAK);
+		addRecipe(Blocks.POWERED_COMPARATOR,RecipeType.BREAK);
+		addRecipe(Blocks.UNPOWERED_COMPARATOR,RecipeType.BREAK);
 		
+		//bricks
 		addRecipe(Blocks.BRICK_BLOCK,RecipeType.BREAK);
 		addRecipe(Blocks.BRICK_STAIRS,RecipeType.BREAK);
 		
@@ -157,17 +234,20 @@ public class Vanilla {
 		addRecipe(Blocks.NETHER_BRICK_FENCE,RecipeType.BREAK);
 		addRecipe(Blocks.NETHER_BRICK_STAIRS,RecipeType.BREAK);
 		
+		//StoneBrick/slabs
 		addRecipe(Blocks.STONE_SLAB,RecipeType.BREAK);
 		addRecipe(Blocks.STONE_SLAB2,RecipeType.BREAK);
 		addRecipe(Blocks.DOUBLE_STONE_SLAB,RecipeType.BREAK);
 		addRecipe(Blocks.DOUBLE_STONE_SLAB2,RecipeType.BREAK);
 		addRecipe(Blocks.STONE_BRICK_STAIRS,RecipeType.BREAK);
 		
+		//sandstone
 		addRecipe(Blocks.SANDSTONE,RecipeType.BREAK);
 		addRecipe(Blocks.SANDSTONE_STAIRS,RecipeType.BREAK);
 		addRecipe(Blocks.RED_SANDSTONE,RecipeType.BREAK);
 		addRecipe(Blocks.RED_SANDSTONE_STAIRS,RecipeType.BREAK);
 		
+		//ALL THE WOODS
 		addRecipe(Blocks.OAK_DOOR,RecipeType.BREAK);
 		addRecipe(Blocks.OAK_FENCE,RecipeType.BREAK);
 		addRecipe(Blocks.OAK_FENCE_GATE,RecipeType.BREAK);
@@ -198,6 +278,7 @@ public class Vanilla {
 		addRecipe(Blocks.DARK_OAK_FENCE_GATE,RecipeType.BREAK);
 		addRecipe(Blocks.DARK_OAK_STAIRS,RecipeType.BREAK);
 		
+		//Rails
 		addRecipe(Blocks.RAIL,RecipeType.BREAK);
 		addRecipe(Blocks.ACTIVATOR_RAIL,RecipeType.BREAK);
 		addRecipe(Blocks.DETECTOR_RAIL,RecipeType.BREAK);
