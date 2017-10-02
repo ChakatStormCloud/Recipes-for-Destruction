@@ -3,6 +3,7 @@ package StormCloud.recipesfordestruction.explosion;
 
 import java.util.HashMap;
 
+import StormCloud.recipesfordestruction.Utility;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -69,14 +70,14 @@ public class ExplosionRecipeHandler {
 	 */
 	public static void handleBlockExplosion(Block block, RecipeType type) {
 		//null check
-		if (block==null) {System.out.println("Can't Add Block! Block Null!");return;}
+		if (block==null) {Utility.getLogger().error("Can't Add Block! Block Null!");return;}
 		//check if there's already a recipe
 		if(explosionRecipeMap2.containsKey(block)) {
-			System.out.println("Explosion Handler Recipe for "+block.getUnlocalizedName()+" already exists!");
+			Utility.getLogger().warn("Explosion Handler Recipe for "+block.getUnlocalizedName()+" already exists!");
 		}else {
 			//normal behaviour
 			explosionRecipeMap2.put(block, type);
-			System.out.println("Explosion Handler Recipe for "+block.getUnlocalizedName()+" successfully added!");
+			Utility.getLogger().info("Explosion Handler Recipe for "+block.getUnlocalizedName()+" successfully added!");
 		}
 		
 	}
@@ -99,15 +100,15 @@ public class ExplosionRecipeHandler {
 	 */
 	public static void addExplosionResult(Item item, float resistance,int[][] metas, ItemStack[]... result) {
 		//null check
-		if (item==null) {System.out.println("Can't Add Item! Item Null!");return;}
+		if (item==null) {Utility.getLogger().error("Can't Add Item! Item Null!");return;}
 		//check if there's already a recipe
 		if(explosionDebrisMap.containsKey(item)){//tell somebody
-			System.out.println("Explosion Debris Recipe for " + item.getUnlocalizedName() + " already exists!");
+			Utility.getLogger().warn("Explosion Debris Recipe for " + item.getUnlocalizedName() + " already exists!");
 		}else{
 			//normal behaviour
 			explosionDebrisMap.put(item, new Debris(resistance,metas, result));
 			//we did it!! wooo
-			System.out.println("Explosion Debris Recipe for " + item.getUnlocalizedName() +" added successfully.");
+			Utility.getLogger().info("Explosion Debris Recipe for " + item.getUnlocalizedName() +" added successfully.");
 		}
 		
 	}
@@ -122,15 +123,15 @@ public class ExplosionRecipeHandler {
 	 */
 	public static void addExplosionResult(Item item, float resistance, ItemStack... result) {
 		//null check
-		if (item==null) {System.out.println("Can't Add Item! Item Null!");return;}
+		if (item==null) {Utility.getLogger().error("Can't Add Item! Item Null!");return;}
 		//check if there's already a recipe
 		if(explosionDebrisMap.containsKey(item)){//tell somebody
-			System.out.println("Explosion Debris Recipe for " + item.getUnlocalizedName() + " already exists!");
+			Utility.getLogger().warn("Explosion Debris Recipe for " + item.getUnlocalizedName() + " already exists!");
 		}else{
 			//normal behaviour
 			explosionDebrisMap.put(item, new Debris(resistance, result));
 			//we did it!! wooo
-			System.out.println("Explosion Debris Recipe for " + item.getUnlocalizedName() +" added successfully.");
+			Utility.getLogger().info("Explosion Debris Recipe for " + item.getUnlocalizedName() +" added successfully.");
 		}
 		
 	}

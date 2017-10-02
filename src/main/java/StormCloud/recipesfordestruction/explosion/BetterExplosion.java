@@ -93,7 +93,6 @@ public class BetterExplosion{
 				
 				//My Block drop
 				if (iblockstate.getMaterial() != Material.AIR){
-					//System.out.println(block.getUnlocalizedName());
 					
 					if (block.canDropFromExplosion(this.explosion)) {
 						switch(ExplosionRecipeHandler.getHandledType(block)){
@@ -147,7 +146,6 @@ public class BetterExplosion{
 		stacksIn.add(blockstack);
 		
 		int i;
-		System.out.println("Begining breakdown");
 		while(stacksIn.size() > 0) {
 			
 			i = exploRNG.nextInt(stacksIn.size());

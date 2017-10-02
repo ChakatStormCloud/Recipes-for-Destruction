@@ -1,5 +1,8 @@
 package StormCloud.recipesfordestruction.explosion.api;
 
+
+
+import StormCloud.recipesfordestruction.Utility;
 import StormCloud.recipesfordestruction.explosion.ExplosionRecipeHandler;
 import StormCloud.recipesfordestruction.explosion.ExplosionRecipeHandler.RecipeType;
 import net.minecraft.block.Block;
@@ -11,7 +14,7 @@ import net.minecraft.init.Items;
 public class Vanilla {
 	
 	public static void addRecipes(){
-		System.out.println("Trying to add recipes");
+		Utility.getLogger().info("Trying to add vanilla recipes");
 		ItemStack planks = new ItemStack(Item.getItemFromBlock(Blocks.PLANKS),1); 
 		ItemStack stick = new ItemStack(Items.STICK,1);
 		ItemStack cobble = new ItemStack(Item.getItemFromBlock(Blocks.COBBLESTONE),1);
@@ -100,6 +103,8 @@ public class Vanilla {
 		
 		addDebris(Blocks.HOPPER,14f,new ItemStack(Items.IRON_INGOT,5,0),new ItemStack(Blocks.CHEST,1,0));
 		addDebris(Items.BREWING_STAND,5f,new ItemStack(Items.BLAZE_ROD,1),new ItemStack(Blocks.COBBLESTONE,3));
+		addDebris(Blocks.IRON_DOOR,14f,new ItemStack(Items.IRON_INGOT,2));
+		addDebris(Blocks.IRON_TRAPDOOR,14f,new ItemStack(Items.IRON_INGOT,4));
 		
 		addDebris(Blocks.LADDER,4f,new ItemStack(Items.STICK,2));
 		addDebris(Items.SIGN,4f,new ItemStack(Blocks.PLANKS,2));
@@ -114,7 +119,9 @@ public class Vanilla {
 		addDebris(Blocks.UNPOWERED_REPEATER,4f,new ItemStack(Blocks.REDSTONE_TORCH,2),new ItemStack(Blocks.STONE,3),redstone);//again, probably redundant
 		addDebris(Blocks.POWERED_COMPARATOR,4f,new ItemStack(Blocks.REDSTONE_TORCH,3),new ItemStack(Blocks.STONE,3),new ItemStack(Items.QUARTZ,1));
 		addDebris(Blocks.UNPOWERED_COMPARATOR,4f,new ItemStack(Blocks.REDSTONE_TORCH,3),new ItemStack(Blocks.STONE,3),new ItemStack(Items.QUARTZ,1));//again, probably redundant
-		
+		addDebris(Blocks.REDSTONE_LAMP,4f,new ItemStack(Blocks.GLOWSTONE,1),new ItemStack(Items.REDSTONE,4));
+		addDebris(Blocks.LIT_REDSTONE_LAMP,4f,new ItemStack(Blocks.GLOWSTONE,1),new ItemStack(Items.REDSTONE,4));
+		addDebris(Blocks.GLOWSTONE,4f,new ItemStack(Items.GLOWSTONE_DUST,4));
 		
 		addDebris(Blocks.STONE_BRICK_STAIRS,7f, new ItemStack(Blocks.STONE_STAIRS,1,0));
 		addDebris(Blocks.STONE_STAIRS,14f,new ItemStack(Blocks.GRAVEL,1,0));
@@ -154,6 +161,7 @@ public class Vanilla {
 		addRecipe(Blocks.SOUL_SAND,RecipeType.DROP);
 		addRecipe(Blocks.CLAY,RecipeType.DROP);
 		addRecipe(Blocks.TRIPWIRE,RecipeType.DROP);
+		addRecipe(Blocks.GLOWSTONE,RecipeType.DROP);
 		
 		//Drop for now, TODO: add custom items for dropping
 		addRecipe(Blocks.WOOL,RecipeType.DROP);
@@ -165,7 +173,10 @@ public class Vanilla {
 		addRecipe(Blocks.REDSTONE_ORE,RecipeType.DROP);
 		addRecipe(Blocks.LIT_REDSTONE_ORE,RecipeType.DROP);
 		addRecipe(Blocks.QUARTZ_ORE,RecipeType.DROP);
-		addRecipe(Blocks.DIAMOND_ORE,RecipeType.DROP);
+		addRecipe(Blocks.DIAMOND_ORE,RecipeType.DROP);//diamond + cobble?
+		addRecipe(Blocks.IRON_BARS,RecipeType.DROP);
+		//Unhandled for now, add something
+		addRecipe(Blocks.TORCH,RecipeType.UNHANDLED);
 		
 		//unhandled, TODO: find something
 		addRecipe(Blocks.WHEAT,RecipeType.UNHANDLED);
@@ -202,6 +213,9 @@ public class Vanilla {
 		addRecipe(Blocks.WALL_SIGN,RecipeType.BREAK);
 		addRecipe(Blocks.BREWING_STAND,RecipeType.BREAK);
 		
+		addRecipe(Blocks.IRON_DOOR,RecipeType.BREAK);
+		addRecipe(Blocks.IRON_TRAPDOOR,RecipeType.BREAK);
+		
 		//matrialblocks
 		addRecipe(Blocks.GOLD_BLOCK,RecipeType.BREAK);
 		addRecipe(Blocks.IRON_BLOCK,RecipeType.BREAK);
@@ -225,6 +239,8 @@ public class Vanilla {
 		addRecipe(Blocks.POWERED_REPEATER,RecipeType.BREAK);
 		addRecipe(Blocks.POWERED_COMPARATOR,RecipeType.BREAK);
 		addRecipe(Blocks.UNPOWERED_COMPARATOR,RecipeType.BREAK);
+		addRecipe(Blocks.REDSTONE_LAMP,RecipeType.BREAK);
+		addRecipe(Blocks.LIT_REDSTONE_LAMP,RecipeType.BREAK);
 		
 		//bricks
 		addRecipe(Blocks.BRICK_BLOCK,RecipeType.BREAK);
