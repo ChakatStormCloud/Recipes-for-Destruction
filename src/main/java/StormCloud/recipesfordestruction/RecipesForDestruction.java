@@ -1,5 +1,6 @@
 package StormCloud.recipesfordestruction;
 
+import StormCloud.recipesfordestruction.init.ItemsHandler;
 import StormCloud.recipesfordestruction.proxy.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -24,6 +25,7 @@ public class RecipesForDestruction {
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		ItemsHandler.register();
 		proxy.preInit(event);
 	}
 
