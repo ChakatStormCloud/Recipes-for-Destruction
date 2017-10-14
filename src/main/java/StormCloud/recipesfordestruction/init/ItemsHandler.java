@@ -9,8 +9,11 @@ import StormCloud.recipesfordestruction.Utility;
 import StormCloud.recipesfordestruction.item.Enums.IMetaEnum;
 import StormCloud.recipesfordestruction.item.Enums.MetalDebrisTypes;
 import StormCloud.recipesfordestruction.item.Enums.OreChunkTypes;
+import StormCloud.recipesfordestruction.item.Enums.RubbleTypes;
 import StormCloud.recipesfordestruction.item.ItemMetalBits;
+import StormCloud.recipesfordestruction.item.ItemMulch;
 import StormCloud.recipesfordestruction.item.ItemOreChunk;
+import StormCloud.recipesfordestruction.item.ItemRubble;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 //import StormCloud.madengineering.backend.handlers.Enumnums.IMetaEnum;
 //import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -25,26 +28,30 @@ public class ItemsHandler {
 	public static Item itemSplinters;
 	public static Item itemMetalBits;
 	public static Item itemOreChunk;
+	public static Item itemRubble;
 	
 	public static void init(){
-		itemMulch = null;
+		itemMulch = new ItemMulch("itemMulch");
 		itemSplinters = null;
 		itemMetalBits = new ItemMetalBits("itemMetalBits");
 		itemOreChunk = new ItemOreChunk("itemOreChunk");
-		
+		itemRubble = new ItemRubble("itemRubble");
 		
 	}
 	
 	public static void register() {
+		registerItem(itemMulch);
 		registerItem(itemMetalBits);
 		registerItem(itemOreChunk);
+		registerItem(itemRubble);
 		
 	}
 	
 	public static void registerRenders() {
+		registerRender(itemMulch);
 		registerRenderMeta(itemMetalBits,MetalDebrisTypes.values());
 		registerRenderMeta(itemOreChunk,OreChunkTypes.values());
-		
+		registerRenderMeta(itemRubble,RubbleTypes.values());
 	}
 	
 	

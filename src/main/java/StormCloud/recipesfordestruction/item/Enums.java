@@ -3,6 +3,7 @@ package StormCloud.recipesfordestruction.item;
 import net.minecraft.util.IStringSerializable;
 
 public class Enums {
+	
 	public interface IMetaEnum{
 		public int getMeta();
 		public String getName();
@@ -49,5 +50,27 @@ public class Enums {
 		public String getName(){
 			return name;
 		}
+	}
+	public static enum RubbleTypes implements IStringSerializable, IMetaEnum{
+		STONE(0,"stone"),
+		PURPUR(1,"purpur");
+		
+		
+		private int ID;
+		private String name;
+		
+		private RubbleTypes(int ID,String name){
+			this.ID = ID;
+			this.name = name;
+		}
+		
+		public int getMeta(){
+			return ID;
+		}
+		
+		public String getName(){
+			return name;
+		}
+		
 	}
 }

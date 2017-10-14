@@ -93,8 +93,8 @@ public class ExplosionRecipeHandler {
 	 * @param result[]; collection of collections of items stacks, each set must match to a meta value given in the same order
 	 * 
 	 * ie
-	 * metas[] = {meta1,meta2,meta3}
-	 * result[][]= {{Itemstacks for meta1},{Itemstack for meta2},{Itemstacks for meta3}}
+	 * metas[][] = {{meta1},{meta2},{meta3, meta4}}
+	 * result[][]= {{Itemstacks for meta1},{Itemstack for meta2},{Itemstacks for meta3 and 4}}
 	 * 
 	 * 
 	 */
@@ -121,7 +121,7 @@ public class ExplosionRecipeHandler {
 	 * @param resistance; explosion resistance, for itemblocks, suggest using regular explosion resistance 
 	 * @param result[]; collection of items, that this item will break into, don't use too many.
 	 */
-	public static void addExplosionResult(Item item, float resistance, ItemStack... result) {
+	public static void addExplosionResult(Item item, float resistance, ItemStack[] result) {
 		//null check
 		if (item==null) {Utility.getLogger().error("Can't Add Item! Item Null!");return;}
 		//check if there's already a recipe
