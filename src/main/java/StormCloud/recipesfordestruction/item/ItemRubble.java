@@ -26,11 +26,6 @@ public class ItemRubble extends Item {
 	
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		/*if(stack.getItemDamage() < MetalDebrisTypes.values().length){
-			return this.getUnlocalizedName() + "." + MetalDebrisTypes.values()[stack.getItemDamage()].getName();
-		}else{
-			return this.getUnlocalizedName() + "." + MetalDebrisTypes.BROKEN.getName();
-		}*/
-		return RubbleTypes.values()[stack.getItemDamage()].getName();
+		return this.getUnlocalizedName() + "." + RubbleTypes.values()[stack.getItemDamage()].getName();
 	}
 }

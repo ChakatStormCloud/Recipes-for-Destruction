@@ -71,10 +71,10 @@ public class ItemsHandler {
 		
 		for(IMetaEnum e:enums){
 			
-			ModelLoader.setCustomModelResourceLocation(item, (e).getMeta(), new ModelResourceLocation(new ResourceLocation(MainLib.MODID, item.getUnlocalizedName().substring(5) + "_" + e.toString()), "inventory"));
-			Utility.getLogger().info("Registered render for item: " + item.getUnlocalizedName().substring(5) + "." + e.toString());
+			ModelLoader.setCustomModelResourceLocation(item, (e).getMeta(), new ModelResourceLocation(new ResourceLocation(MainLib.MODID, item.getUnlocalizedName().substring(5) + "_" + e.getName()), "inventory"));
+			Utility.getLogger().info("Registered render for item: " + item.getUnlocalizedName().substring(5) + "." + e.getName());
 			
-			list.add(new ResourceLocation(MainLib.MODID,e.toString()));
+			list.add(new ResourceLocation(MainLib.MODID,e.getName()));
 		}
 		// Thanks to irc.furnet.org/#CodingFurs for help with this little mess
 		ModelBakery.registerItemVariants(item,list.toArray(new ResourceLocation[list.size()]));

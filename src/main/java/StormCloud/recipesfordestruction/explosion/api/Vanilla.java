@@ -77,6 +77,10 @@ public class Vanilla {
 		addDebris(Blocks.BROWN_MUSHROOM,4f,new ItemStack(ItemsHandler.itemMulch,1));
 		addDebris(Blocks.RED_MUSHROOM,4f,new ItemStack(ItemsHandler.itemMulch,1));
 		
+		//ores
+		addDebris(Blocks.IRON_ORE,4f,new ItemStack(ItemsHandler.itemOreChunk,4,0));//TODO: add some kind of randomization so that they don't always drop.
+		addDebris(Blocks.GOLD_ORE,4f,new ItemStack(ItemsHandler.itemOreChunk,4,1));
+		
 		addDebris(Blocks.BRICK_BLOCK,8f,new ItemStack(Items.BRICK,4,0));
 		addDebris(Blocks.BRICK_STAIRS,8f,new ItemStack(Items.BRICK,6,0));
 		addDebris(Blocks.NETHER_BRICK,8f,new ItemStack(Items.NETHERBRICK,4,0));
@@ -177,15 +181,15 @@ public class Vanilla {
 		
 		//Drop for now, TODO: add custom items for dropping
 		addRecipe(Blocks.WOOL,RecipeType.DROP);
-		addRecipe(Blocks.IRON_ORE,RecipeType.DROP);
-		addRecipe(Blocks.GOLD_ORE,RecipeType.DROP);
+		addRecipe(Blocks.IRON_ORE,RecipeType.BREAK);
+		addRecipe(Blocks.GOLD_ORE,RecipeType.BREAK);
 		addRecipe(Blocks.COAL_ORE,RecipeType.DROP);
 		addRecipe(Blocks.LAPIS_ORE,RecipeType.DROP);
 		addRecipe(Blocks.EMERALD_ORE,RecipeType.DROP);
 		addRecipe(Blocks.REDSTONE_ORE,RecipeType.DROP);
 		addRecipe(Blocks.LIT_REDSTONE_ORE,RecipeType.DROP);
 		addRecipe(Blocks.QUARTZ_ORE,RecipeType.DROP);
-		addRecipe(Blocks.DIAMOND_ORE,RecipeType.DROP);//diamond + cobble?
+		addRecipe(Blocks.DIAMOND_ORE,RecipeType.DROP);//diamond + cobble?, nah, it's good as is.
 		addRecipe(Blocks.IRON_BARS,RecipeType.DROP);
 		//Unhandled for now, add something
 		addRecipe(Blocks.TORCH,RecipeType.UNHANDLED);
