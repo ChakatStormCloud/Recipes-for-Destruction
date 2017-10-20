@@ -18,7 +18,10 @@ public class RecipeHandler {
 	
 	public static void registerCraftingRecipies(){
 		//add regular recipes
-		GameRegistry.addShapedRecipe(new ItemStack(Blocks.GRAVEL), new Object[]{"GG","GG",'G',new ItemStack(ItemsHandler.itemRubble, 1, 0),});
+		GameRegistry.addShapedRecipe(new ItemStack(Blocks.GRAVEL), new Object[]{"GG","GG",'G',new ItemStack(ItemsHandler.itemRubble, 1, 0)});
+		GameRegistry.addShapedRecipe(new ItemStack(Blocks.IRON_ORE), new Object[]{"GG","GG",'G',new ItemStack(ItemsHandler.itemOreChunk, 1, 0)});
+		GameRegistry.addShapedRecipe(new ItemStack(Blocks.GOLD_ORE), new Object[]{"GG","GG",'G',new ItemStack(ItemsHandler.itemOreChunk, 1, 1)});
+		GameRegistry.addShapedRecipe(new ItemStack(ItemsHandler.itemRubble), new Object[] {"GG","GG",'G',new ItemStack(ItemsHandler.itemRubble,1,2)});
 		
 		//add OreDict recipes
 		GameRegistry.addRecipe(new ShapedOreRecipe(Items.IRON_INGOT,"###","###","###", '#', "nuggetIron"));
@@ -32,12 +35,10 @@ public class RecipeHandler {
 	public static void registerSmeltingRecipies(){
 		//Input can be block, item, or itemstack, Output must be itemstack, XP is a float
 		//GameRegistry.addSmelting(input, output, xp);
-		GameRegistry.addSmelting(new ItemStack(ItemsHandler.itemRubble, 4, 0), new ItemStack(Blocks.STONE,1), 0);
-		GameRegistry.addSmelting(new ItemStack(ItemsHandler.itemRubble, 4, 1), new ItemStack(Blocks.PURPUR_BLOCK,1), 0);
+		GameRegistry.addSmelting(Blocks.GRAVEL, new ItemStack(Blocks.COBBLESTONE), 0f);
+		GameRegistry.addSmelting(new ItemStack(ItemsHandler.itemRubble,1,2), new ItemStack(Blocks.PURPUR_BLOCK,1), 0);
 		GameRegistry.addSmelting(new ItemStack(ItemsHandler.itemMetalBits,1,1),new ItemStack(ItemsHandler.itemMetalBits,1,0),0);
 		GameRegistry.addSmelting(new ItemStack(ItemsHandler.itemMetalBits,1,2), new ItemStack(Items.GOLD_NUGGET), 0);
-		GameRegistry.addSmelting(new ItemStack(ItemsHandler.itemOreChunk,4,0), new ItemStack(Items.IRON_INGOT,1), 0);//add actual XP from iron
-		GameRegistry.addSmelting(new ItemStack(ItemsHandler.itemOreChunk,4,1), new ItemStack(Items.GOLD_INGOT,1), 0);//add actual XP from gold
 		
 		Utility.getLogger().info("Registered Smelting Recipies!");
 		

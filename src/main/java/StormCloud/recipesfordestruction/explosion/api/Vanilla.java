@@ -92,6 +92,13 @@ public class Vanilla {
 		addDebris(Blocks.RED_SANDSTONE,6f,new ItemStack(Blocks.SAND,4,1));
 		addDebris(Blocks.RED_SANDSTONE_STAIRS,6f,new ItemStack(Blocks.RED_SANDSTONE,1,0));
 		
+		//purpur
+		addDebris(Blocks.PURPUR_BLOCK,10f,new ItemStack(ItemsHandler.itemRubble,4,1));
+		addDebris(Blocks.PURPUR_PILLAR,10f,new ItemStack(ItemsHandler.itemRubble,4,1));
+		addDebris(Blocks.PURPUR_STAIRS,10f,new ItemStack(ItemsHandler.itemRubble,6,1));
+		addDebris(Blocks.PURPUR_SLAB,10f,new ItemStack(ItemsHandler.itemRubble,2,1));
+		addDebris(Blocks.PURPUR_DOUBLE_SLAB,10f,new ItemStack(ItemsHandler.itemRubble,4,1));
+		
 		addDebris(Items.OAK_DOOR,4f, new ItemStack(Blocks.PLANKS,2,0));
 		addDebris(Blocks.OAK_FENCE,4f, new ItemStack(Blocks.PLANKS,1,0),stick);
 		addDebris(Blocks.OAK_FENCE_GATE,6f, new ItemStack(Blocks.PLANKS,2,0),new ItemStack(Items.STICK,4));
@@ -181,8 +188,6 @@ public class Vanilla {
 		
 		//Drop for now, TODO: add custom items for dropping
 		addRecipe(Blocks.WOOL,RecipeType.DROP);
-		addRecipe(Blocks.IRON_ORE,RecipeType.BREAK);
-		addRecipe(Blocks.GOLD_ORE,RecipeType.BREAK);
 		addRecipe(Blocks.COAL_ORE,RecipeType.DROP);
 		addRecipe(Blocks.LAPIS_ORE,RecipeType.DROP);
 		addRecipe(Blocks.EMERALD_ORE,RecipeType.DROP);
@@ -194,6 +199,9 @@ public class Vanilla {
 		//Unhandled for now, add something
 		addRecipe(Blocks.TORCH,RecipeType.UNHANDLED);
 		
+		//Ore chunk
+		addRecipe(Blocks.IRON_ORE,RecipeType.BREAK);
+		addRecipe(Blocks.GOLD_ORE,RecipeType.BREAK);
 		
 		//intentionally unhandled, I might do something with this, but probably not.
 		addRecipe(Blocks.PORTAL,RecipeType.UNHANDLED);
@@ -258,6 +266,13 @@ public class Vanilla {
 		addRecipe(Blocks.UNPOWERED_COMPARATOR,RecipeType.BREAK);
 		addRecipe(Blocks.REDSTONE_LAMP,RecipeType.BREAK);
 		addRecipe(Blocks.LIT_REDSTONE_LAMP,RecipeType.BREAK);
+		
+		//purpur
+		addRecipe(Blocks.PURPUR_BLOCK,RecipeType.BREAK);
+		addRecipe(Blocks.PURPUR_PILLAR,RecipeType.BREAK);
+		addRecipe(Blocks.PURPUR_STAIRS,RecipeType.BREAK);
+		addRecipe(Blocks.PURPUR_SLAB,RecipeType.BREAK);
+		addRecipe(Blocks.PURPUR_DOUBLE_SLAB,RecipeType.BREAK);
 		
 		//bricks
 		addRecipe(Blocks.BRICK_BLOCK,RecipeType.BREAK);

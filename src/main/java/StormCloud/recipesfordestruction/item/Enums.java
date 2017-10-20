@@ -53,7 +53,8 @@ public class Enums {
 	}
 	public static enum RubbleTypes implements IStringSerializable, IMetaEnum{
 		STONE(0,"stone"),
-		PURPUR(1,"purpur");
+		PURPUR(1,"purpur"),
+		PURPURPILE(2,"purpurPile");
 		
 		
 		private int ID;
