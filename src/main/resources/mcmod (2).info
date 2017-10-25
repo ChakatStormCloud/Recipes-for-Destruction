@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "recipesfordestruction",
+    "name": "Recipes for Destruction",
+    "description": "Matter is not destroyed when things explode",
+    "version": "0.4.2",
+    "mcversion": "1.9.4",
+    "url": "",
+    "updateUrl": "",
+    "authorList": ["StormCloud"],
+    "credits": "StormCloud for making this, and many others for giving me advice and helping me figure things out.",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
