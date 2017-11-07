@@ -46,14 +46,14 @@ public class BetterExplosion{
 		this.affectedBlockPosList = Lists.<BlockPos>newArrayList();
 		this.affectedBlockPosList.addAll(affectedblocksIn);
 		
-		this.smoking = explosion.isSmoking;
-		this.flaming = explosion.isFlaming;
+		this.smoking = explosion.damagesTerrain;
+		this.flaming = explosion.causesFire;
 		
-		this.exploX = explosion.explosionX;
-		this.exploY = explosion.explosionY;
-		this.exploZ = explosion.explosionZ;
+		this.exploX = explosion.x;
+		this.exploY = explosion.y;
+		this.exploZ = explosion.z;
 		
-		this.size = explosion.explosionSize;
+		this.size = explosion.size;
 		
 	}
 	
@@ -77,7 +77,7 @@ public class BetterExplosion{
 					double d3 = d0 - this.exploX;
 					double d4 = d1 - this.exploY;
 					double d5 = d2 - this.exploZ;
-					double d6 = (double)MathHelper.sqrt_double(d3 * d3 + d4 * d4 + d5 * d5);
+					double d6 = (double)MathHelper.sqrt(d3 * d3 + d4 * d4 + d5 * d5);
 					d3 = d3 / d6;
 					d4 = d4 / d6;
 					d5 = d5 / d6;
@@ -154,10 +154,10 @@ public class BetterExplosion{
 			
 			if(debby != null && power > debby.resistance) {
 				for(ItemStack item2: debby.getResults(itemstack)) {
-					if(item2.stackSize > 1) {
-						for(int p=0; p < item2.stackSize;p++) {
+					if(item2.getCount() > 1) {
+						for(int p=0; p < item2.getCount();p++) {
 							ItemStack item3 = item2.copy();
-							item3.stackSize = 1;
+							item3.setCount(1);
 							stacksIn.add(item3);
 						}
 					}else {
@@ -176,7 +176,7 @@ public class BetterExplosion{
 		}
 		for(ItemStack itemstack : drops) {
 			EntityItem entityitem = new EntityItem(this.worldObj, blockpos.getX()+0.5,blockpos.getY()+0.5, blockpos.getZ()+0.5,itemstack);
-			this.worldObj.spawnEntityInWorld(entityitem);
+			this.worldObj.spawnEntity(entityitem);
 		}
 		stacksIn.clear();
 		drops.clear();

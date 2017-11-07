@@ -26,7 +26,7 @@ public class ItemMulch extends Item {
 		if (!playerIn.canPlayerEdit(pos.offset(facing), facing, stack)){
 			return EnumActionResult.FAIL;
 		}else{
-			if (ItemDye.applyBonemeal(stack, worldIn, pos, playerIn)){
+			if (ItemDye.applyBonemeal(stack, worldIn, pos)){
 				if (!worldIn.isRemote){
 					worldIn.playEvent(2005, pos, 0);
 				}

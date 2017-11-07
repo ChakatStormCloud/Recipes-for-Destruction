@@ -1,12 +1,11 @@
 package StormCloud.recipesfordestruction.item;
 
-import java.util.List;
-
 import StormCloud.recipesfordestruction.MainLib;
 import StormCloud.recipesfordestruction.item.Enums.OreChunkTypes;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
 public class ItemOreChunk extends Item {
@@ -18,9 +17,9 @@ public class ItemOreChunk extends Item {
 	
 	
 	@Override
-	public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems) {
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		for(int i = 0; i < OreChunkTypes.values().length;i++){
-			subItems.add(new  ItemStack(itemIn,1,i));
+			items.add(new  ItemStack(this,1,i));
 		}
 	}
 	

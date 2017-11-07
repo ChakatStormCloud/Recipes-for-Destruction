@@ -1,16 +1,16 @@
 [
-{
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
-}
+  {
+    "modid": "recipesfordestruction",
+    "name": "Recipes for Destruction",
+    "description": "Matter is not destroyed when things explode",
+    "version": "0.4.2",
+    "mcversion": "1.12.2",
+    "url": "",
+    "updateUrl": "",
+    "authorList": ["StormCloud"],
+    "credits": "StormCloud for making this, and many others for giving me advice and helping me figure things out.",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
 ]
