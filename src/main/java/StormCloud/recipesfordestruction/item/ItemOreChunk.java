@@ -31,6 +31,6 @@ public class ItemOreChunk extends Item {
 		}else{
 			return this.getUnlocalizedName() + "." + MetalDebrisTypes.BROKEN.getName();
 		}*/
-		return this.getUnlocalizedName() + "." + OreChunkTypes.values()[stack.getItemDamage()].getName();
+		return this.getUnlocalizedName() + "." + OreChunkTypes.values()[stack.getItemDamage()].getMetaName();
 	}
 }

@@ -1,13 +1,9 @@
 package StormCloud.recipesfordestruction.item;
 
 import net.minecraft.util.IStringSerializable;
+import StormCloud.recipesfordestruction.item.IMetaEnum;
 
 public class Enums {
-	
-	public interface IMetaEnum{
-		public int getMeta();
-		public String getName();
-	}
 	
 	public static enum MetalDebrisTypes  implements IStringSerializable, IMetaEnum{
 		IRON_NUGGET(0,"ironNugget"),
@@ -23,11 +19,15 @@ public class Enums {
 		}
 		
 		public int getMeta(){
-			return ID;
+			return this.ID;
 		}
 		
 		public String getName(){
-			return name;
+			return this.toString();
+		}
+		
+		public String getMetaName(){
+			return this.name;
 		}
 	}
 	
@@ -44,11 +44,15 @@ public class Enums {
 		}
 		
 		public int getMeta(){
-			return ID;
+			return this.ID;
 		}
 		
 		public String getName(){
-			return name;
+			return this.toString();
+		}
+		
+		public String getMetaName(){
+			return this.name;
 		}
 	}
 	public static enum RubbleTypes implements IStringSerializable, IMetaEnum{
@@ -66,11 +70,15 @@ public class Enums {
 		}
 		
 		public int getMeta(){
-			return ID;
+			return this.ID;
 		}
 		
 		public String getName(){
-			return name;
+			return this.toString();
+		}
+		
+		public String getMetaName(){
+			return this.name;
 		}
 		
 	}

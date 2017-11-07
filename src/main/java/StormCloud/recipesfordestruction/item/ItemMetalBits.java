@@ -26,6 +26,6 @@ public class ItemMetalBits extends Item {
 	
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return this.getUnlocalizedName() + "." + MetalDebrisTypes.values()[stack.getItemDamage()].getName();
+		return this.getUnlocalizedName() + "." + MetalDebrisTypes.values()[stack.getItemDamage()].getMetaName();
 	}
 }
