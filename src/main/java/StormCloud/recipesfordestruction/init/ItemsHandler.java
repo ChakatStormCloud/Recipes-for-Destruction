@@ -2,8 +2,6 @@ package StormCloud.recipesfordestruction.init;
 
 import java.util.ArrayList;
 
-//import java.util.ArrayList;
-
 import StormCloud.recipesfordestruction.MainLib;
 import StormCloud.recipesfordestruction.Utility;
 import StormCloud.recipesfordestruction.item.Enums.IMetaEnum;
@@ -15,13 +13,12 @@ import StormCloud.recipesfordestruction.item.ItemMulch;
 import StormCloud.recipesfordestruction.item.ItemOreChunk;
 import StormCloud.recipesfordestruction.item.ItemRubble;
 import net.minecraft.client.renderer.block.model.ModelBakery;
-//import StormCloud.madengineering.backend.handlers.Enumnums.IMetaEnum;
-//import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class ItemsHandler {
 	public static Item itemMulch;
@@ -30,21 +27,31 @@ public class ItemsHandler {
 	public static Item itemOreChunk;
 	public static Item itemRubble;
 	
+	private static boolean init=false;
+	
 	public static void init(){
+		if (init)
+			return;
+		
 		itemMulch = new ItemMulch("itemMulch");
 		itemSplinters = null;
 		itemMetalBits = new ItemMetalBits("itemMetalBits");
 		itemOreChunk = new ItemOreChunk("itemOreChunk");
 		itemRubble = new ItemRubble("itemRubble");
 		
+		init = true;
 	}
 	
-	public static void register() {
-		registerItem(itemMulch);
-		registerItem(itemMetalBits);
-		registerItem(itemOreChunk);
-		registerItem(itemRubble);
+	public static void register(final RegistryEvent.Register<Item> event) {
+		if (!init)
+			init();
 		
+		final IForgeRegistry<Item> registry = event.getRegistry();
+		
+		registerItem(itemMulch,registry);
+		registerItem(itemMetalBits,registry);
+		registerItem(itemOreChunk,registry);
+		registerItem(itemRubble,registry);
 	}
 	
 	public static void registerRenders() {
@@ -55,8 +62,9 @@ public class ItemsHandler {
 	}
 	
 	
-	public static void registerItem(Item item){
-		GameRegistry.register(item);
+	public static void registerItem(Item item,final IForgeRegistry<Item> registry){
+		
+		registry.register(item);
 		Utility.getLogger().info("Registered item: " + item.getUnlocalizedName().substring(5));
 	}
 
