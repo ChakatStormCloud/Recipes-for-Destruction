@@ -30,8 +30,8 @@ public class ItemsHandler {
 	private static boolean init=false;
 	
 	public static void init(){
-		if (init)
-			return;
+		if (init) {
+			return;}
 		
 		itemMulch = new ItemMulch("itemMulch");
 		itemSplinters = null;
